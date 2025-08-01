@@ -1,0 +1,82 @@
+// 1. Declaracion de variables y tipos basicos
+var galaxiasObservadas = 100;
+galaxiasObservadas = undefined;
+var nebulosaFavorita = 'Nebulosa de Orión';
+var hayVidaExoPlaneta = true;
+// Any se asigna a cualquier tipo
+var misterioCosmico = "Un objeto no identificado";
+misterioCosmico = 99;
+misterioCosmico = true;
+// 2. Colecciones y estructuras de datos
+//Definir un array
+var planetasRocosos = ["Tierra", "Marte", "Venus"];
+//programacion generica
+var edadesEstrellas = [500, 1000, 250];
+// 3. Tuplas -> Es un array con nun numero fijo de elementos
+// Cada elemento tiene una posicion espefica
+// Hay un orden, tipo y cantidad de datos que siempre se respeta
+// La tupla puede contener distintos tipos de datos en comparacion del array
+var coordenadasAgujeroNegro = [20.5, -15.8];
+var coordenadasAgujeroNegro2 = ["a", -15.8];
+// Enum -> Definis un conjunto de nombres constantes
+// Categorias definidas, roles 
+// Enum numerico
+var TipoCuerpoCeleste;
+(function (TipoCuerpoCeleste) {
+    TipoCuerpoCeleste[TipoCuerpoCeleste["Planeta"] = 0] = "Planeta";
+    TipoCuerpoCeleste[TipoCuerpoCeleste["Estrella"] = 1] = "Estrella";
+    TipoCuerpoCeleste[TipoCuerpoCeleste["Galaxia"] = 2] = "Galaxia";
+    TipoCuerpoCeleste[TipoCuerpoCeleste["Nebulosa"] = 3] = "Nebulosa";
+    TipoCuerpoCeleste[TipoCuerpoCeleste["AgujeroNegro"] = 4] = "AgujeroNegro";
+})(TipoCuerpoCeleste || (TipoCuerpoCeleste = {}));
+//Reverse mapping, solo sirve con enum numerico
+// console.log(TipoCuerpoCeleste[miCuerpoFavorito])
+//Enum string
+// enum TipoCuerpoCeleste {
+//     Planeta = "PLANETA",
+//     Estrella = "ESTRELLA",
+//     Galaxia = "GALAXIA",
+//     Nebulosa = "NEBULOSA",
+//     AgujeroNegro = "AGUJERONEGRO"
+// }
+var miCuerpoFavorito = TipoCuerpoCeleste.Galaxia;
+var tierra = {
+    nombre: "Tierra",
+    tipo: TipoCuerpoCeleste.Planeta,
+    masaKg: 5.972e24,
+    tieneAtmosfera: true,
+    saludar: function () { console.log("Hola soy ".concat(this.nombre, " ")); }
+};
+var sol = {
+    nombre: "Sol",
+    tipo: TipoCuerpoCeleste.Estrella,
+    masaKg: 1.989e30,
+    saludar: function () { return console.log('Hola soy el sol'); }
+};
+var nuestroSol = {
+    nombre: "Sol",
+    tipo: TipoCuerpoCeleste.Estrella,
+    masaKg: 1.989e30,
+    temperatura: 5000
+};
+var nuestroSistemaSolar = [tierra, sol, nuestroSol];
+// Funciones
+function calcularDensidad(masa, volumen) {
+    if (volumen === 0) {
+        console.error("El volumen no puede ser cero");
+        return 0;
+    }
+    return masa / volumen;
+}
+var densidadTierra = calcularDensidad(tierra.masaKg, 1.083e12);
+console.log({ densidadTierra: densidadTierra });
+// Utilizar interfaz como parametro
+function describirCuerpoCeleste(cuerpo) {
+    var descripcion = "El ".concat(TipoCuerpoCeleste[cuerpo.tipo], " ").concat(cuerpo.nombre, " tiene una masa de ").concat(cuerpo.masaKg, " KG ");
+    if (cuerpo.tieneAtmosfera !== undefined) {
+        descripcion += "Tiene atmosfera ";
+    }
+    return descripcion;
+}
+console.log(describirCuerpoCeleste(tierra));
+console.log(describirCuerpoCeleste(sol));
