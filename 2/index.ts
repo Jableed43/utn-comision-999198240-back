@@ -1,5 +1,5 @@
 // 1. Declaracion de variables y tipos basicos
-let galaxiasObservadas: number | undefined = 100
+let galaxiasObservadas: number | undefined = 3
 galaxiasObservadas = undefined
 
 let nebulosaFavorita: string = 'Nebulosa de Orión'
@@ -41,22 +41,23 @@ enum TipoCuerpoCeleste {
 // console.log(TipoCuerpoCeleste[miCuerpoFavorito])
 
 //Enum string
-// enum TipoCuerpoCeleste {
-//     Planeta = "PLANETA",
-//     Estrella = "ESTRELLA",
-//     Galaxia = "GALAXIA",
-//     Nebulosa = "NEBULOSA",
-//     AgujeroNegro = "AGUJERONEGRO"
-// }
+enum TipoCuerpoCeleste2 {
+    Planeta = "PLANETA",
+    Estrella = "ESTRELLA",
+    Galaxia = "GALAXIA",
+    Nebulosa = "NEBULOSA",
+    AgujeroNegro = "AGUJERONEGRO"
+}
 
 let miCuerpoFavorito: TipoCuerpoCeleste = TipoCuerpoCeleste.Galaxia
-// if(miCuerpoFavorito ===  TipoCuerpoCeleste.Galaxia) {
-//     console.log("coinciden")
-// } else {
-//     console.log('No coinciden')
-// }
+if(miCuerpoFavorito ===  TipoCuerpoCeleste.Galaxia) {
+    console.log("coinciden")
+} else {
+    console.log('No coinciden')
+}
 
-//3. interfaces -> Es un contrato, que los objetos deben cumplir
+//3. interfaces -> Es un contrato, que los objetos deben cumplir.
+// Si colocamos funciones no tiene la implementacion
 interface CuerpoCeleste {
     nombre: string;
     tipo: TipoCuerpoCeleste; // OOP -> pilar de Abstraccion
@@ -81,7 +82,7 @@ const sol: CuerpoCeleste = {
 }
 
 //Como heredamos de otra interface?
-
+// Con extends heredamos de una interface y ademas podemos añadir nuevos datos
 interface Sol extends CuerpoCeleste {
     temperatura: number
 }
@@ -93,7 +94,7 @@ const nuestroSol: Sol = {
     temperatura: 5000
 }
 
-const nuestroSistemaSolar: CuerpoCeleste[] = [tierra, sol, nuestroSol]
+const nuestroSistemaSolar: CuerpoCeleste[] = [tierra, sol, nuestroSol as CuerpoCeleste]
 
 
 // Funciones
