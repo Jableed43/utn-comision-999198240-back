@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUser } from '../controllers/userController.js'
+import { createUser, deleteUser, getUsers, updateUser, validate } from '../controllers/userController.js'
 
 // Creamos el enrutador
 // Controla el conjunto de las rutas
@@ -10,4 +10,9 @@ export const userRoute = express.Router()
 // Los endpoints -> http://localhost:3001/api/user/create
 
 //Endpoints
+// Verbo http +  path + controller + service
 userRoute.post("/create", createUser)
+userRoute.get("/getUsers", getUsers)
+userRoute.delete("/deleteUser/:id", deleteUser)
+userRoute.put("/updateUser/:id", updateUser)
+userRoute.post("/login", validate)
