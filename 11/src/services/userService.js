@@ -1,3 +1,4 @@
+import { SECRET } from "../../config.js";
 import User from "../models/userModel.js"
 import { findUserByIdAndCheck } from "../utils/userHelpers.js";
 import bcrypt from 'bcrypt'
@@ -52,39 +53,44 @@ export const updateUserService = async (userId, updateData) => {
     return updatedUser;
 }
 
+// Validamos el usuario
 export const validateUserService = async (email, password) => {
-    // validar si email y password llegaron
+    console.log({email, password})
+    // Validar que ambos campos existan y sean correctos
     if(!(email && password)){
        const error = new Error("There's a missing field")
        error.statusCode = 400;
-       throw error;
+       throw error
     }
+    // El email es unico y es un identificador de usuario
+   const userFound = await User.findOne({email})
+   console.log(userFound)
 
-    const userFound = await User.findOne({ email })
+   if(!userFound){
+        const error = new Error("User or password are incorrect")
+       error.statusCode = 400;
+       throw error
+   }
 
-    if(!userFound){
-        const error = new Error("User or password is incorrect")
-        error.statusCode = 400
-        throw error
-    }
+   // Comparamos la password que llega contra la guardada en la db
+   // Toma la contraseña del cliente la encripta y la compara contra la guardada (encriptada)
+   if(!bcrypt.compareSync(password, userFound.password)){
+        const error = new Error("User or password are incorrect")
+       error.statusCode = 400;
+       throw error
+   }
 
-    // Comparar la password que llega contra la guardada en la db
-    // Encripta la password del request y la compara contra la encriptada de la db
-    if(!bcrypt.compareSync(password, userFound.password)){
-        const error = new Error("User or password is incorrect")
-        error.statusCode = 400
-        throw error
-    }
+   // Generamos el payload
+   // Es la informacion que guardamos en el token
+   const payload = {
+    userId: userFound._id,
+    userEmail: userFound.email
+   }
 
-    //Payload es la informacion que el cargamos al token
-    const payload = {
-        userId: userFound._id,
-        userEmail: userFound.email
-    }
+   // El token debe ser firmado para tener validez
+   // Firma tiene: 1. payload, 2. "secret", 3. duracion
+   const token = jwt.sign(payload, SECRET, { expiresIn: "1h" })
 
-    // El token tiene validez una vez firmado
-    // Sign necesita: payload, secret y duracion del token
-    const token = jwt.sign(payload, "secret", { expiresIn: "1h" })
+   return { message: "Logged in", token }
 
-    return {message: "Logged in", token}
 }

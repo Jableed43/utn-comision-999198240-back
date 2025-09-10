@@ -67,12 +67,12 @@ const userSchema = new mongoose.Schema({
     // Cuando se cree y cuando se modifique se guardaran en los campos createdAt, updatedAt
     timestamps: true} )
 
-// Mongoose permite encriptar antes de guardar la password
-userSchema.pre("save", function (next) {
-    // Encriptamos la password antes de guardarla
-    this.password = bcrypt.hashSync(this.password, 10)
-    next()
-})
+    // Encriptamos la password
+    userSchema.pre("save", function (next) {
+        // Encriptamos la password antes de guardarla
+        this.password = bcrypt.hashSync(this.password, 10)
+        next()
+    } )
 
     // Exportamos el modelo
     // "user" es la coleccion con la que elijo trabajar

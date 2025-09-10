@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { connectDB } from './db.js'
-import { PORT } from './config.js'
+import { PORT, SECRET } from './config.js'
 import { userRoute } from './src/routes/userRoute.js'
 import session from 'express-session'
 
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Generamos el uso de la sesion
 app.use(
     session({
-        secret: "secret", // Dato unico de nuestro sistema
+        secret: SECRET, // Dato unico de nuestro sistema
         resave: false, // Evita que la sesion se vuelva a guardar si no hay datos
         saveUninitialized: false, // Evita que se guarde una sesion no inicializada
     })
