@@ -4,6 +4,8 @@ import { connectDB } from './db.js'
 import { PORT, SECRET } from './config.js'
 import { userRoute } from './src/routes/userRoute.js'
 import session from 'express-session'
+import { categoryRoute } from './src/routes/categoryRoute.js'
+import { productRoute } from './src/routes/productRoute.js'
 
 // Instancia del servidor de express
 const app = express()
@@ -30,6 +32,8 @@ app.use(
 
 //Rutas base - Agrupa las rutas de un recurso
 app.use("/api/user", userRoute)
+app.use("/api/category", categoryRoute)
+app.use("/api/product", productRoute)
 
 // Crear la escucha del servidor, para hacerlo correr
 app.listen(PORT, () => {
