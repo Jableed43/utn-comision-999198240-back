@@ -83,8 +83,9 @@ const productSchema = new mongoose.Schema({
 
     // Atributos/propiedades virtuales, sirven para:
     // Calcular el precio con la tasa de ganancia
-    // PErmite generar un valor sin haberlo escrito en el esquema
+    // Permite generar un valor sin haberlo escrito en el esquema
     // Facilita mucho porque podemos hacer calculos con nuestros propios valores
+    // Datos pre calculados
     productSchema.virtual("priceWithProfitRate").get(function () {
         return this.price * this.profitRate
     })
