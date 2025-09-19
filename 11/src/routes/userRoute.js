@@ -12,7 +12,7 @@ export const userRoute = express.Router()
 //Endpoints
 // Verbo http +  path + controller + service
 userRoute.post("/create", createUser)
-userRoute.get("/getUsers", verifyTokenMiddleware, getUsers)
-userRoute.delete("/deleteUser/:id", verifyTokenMiddleware, deleteUser)
-userRoute.put("/updateUser/:id", verifyTokenMiddleware, updateUser)
+userRoute.get("/getUsers", getUsers)
+userRoute.delete("/deleteUser/:id", deleteUser)
+userRoute.put("/updateUser/:id", updateUser)
 userRoute.post("/login", validate)

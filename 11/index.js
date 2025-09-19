@@ -6,9 +6,19 @@ import { userRoute } from './src/routes/userRoute.js'
 import session from 'express-session'
 import { categoryRoute } from './src/routes/categoryRoute.js'
 import { productRoute } from './src/routes/productRoute.js'
+import cors from 'cors'
 
 // Instancia del servidor de express
 const app = express()
+
+// Cors sirve para que el backend pueda recibir solicitudes del frontend
+app.use(cors({
+    // Permitimos todas las conexiones de cualquier ip:puerto
+    origin: "*",
+    // Decidimos cuales metodos son permitidos
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+}))
+
 // Conexion a la base de datos
 connectDB()
 
