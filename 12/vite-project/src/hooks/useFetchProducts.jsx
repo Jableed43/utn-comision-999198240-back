@@ -38,3 +38,4 @@ function useFetchProducts() {
 }
 
 export default useFetchProducts;
+

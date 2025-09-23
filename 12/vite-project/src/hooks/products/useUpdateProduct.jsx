@@ -35,3 +35,4 @@ function useUpdateProduct() {
 }
 
 export default useUpdateProduct;
+

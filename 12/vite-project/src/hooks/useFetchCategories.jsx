@@ -38,3 +38,4 @@ function useFetchCategories() {
 }
 
 export default useFetchCategories;
+
