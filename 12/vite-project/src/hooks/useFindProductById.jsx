@@ -1,31 +1,26 @@
 import { useState } from "react";
 
 /**
- * Hook para obtener la lista de usuarios
+ * Hook para buscar producto por ID
  * @returns {Object} Objeto con funciones y estados
  */
-function useFetchUsers() {
+function useFindProductById() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/getUsers";
+    const baseUrl = "http://localhost:3000/api/product/find-by-id";
 
-    const fetchUsers = async () => {
+    const findProductById = async (id) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(initialUrl);
+            const response = await fetch(`${baseUrl}/${id}`);
 
             if (response.ok) {
-                const users = await response.json();
-                console.log(users);
+                const product = await response.json();
+                console.log(product);
                 setDone(true);
-                return users;
-            } else if (response.status === 204) {
-                // No hay usuarios en la base de datos
-                console.log('No hay usuarios en la base de datos');
-                setDone(true);
-                return [];
+                return product;
             } else {
                 throw new Error(`Error en la respuesta de la api: ${response.statusText}`);
             }
@@ -33,13 +28,13 @@ function useFetchUsers() {
             console.error(error.message);
             setError(error);
             setDone(true);
-            return [];
+            return null;
         } finally {
             setLoading(false);
         }
     };
 
-    return { fetchUsers, error, loading, done };
+    return { findProductById, error, loading, done };
 }
 
-export default useFetchUsers;
+export default useFindProductById;
