@@ -18,7 +18,7 @@ export const getCategories = async (req, res) => {
     } catch (error) {
         // Si vos tenes un error conocido entonces debes tener el caso especifico para ese error
         if(error.statusCode === 204){
-            return res.status(204).json({ message: error.message })
+            return res.sendStatus(204)
         }
          return res.status(500).json({message: "Internal server error", error: error.message })
     }
