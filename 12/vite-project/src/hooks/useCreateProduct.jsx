@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 /**
- * Hook para autenticación de usuarios
+ * Hook para crear productos
  * @returns {Object} Objeto con funciones y estados
  */
-function useLoginUser() {
+function useCreateProduct() {
     const [error, setError] = useState();
     const [done, setDone] = useState();
     const [loading, setLoading] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/login";
+    const initialUrl = "http://localhost:3000/api/product/create";
 
-    const loginUser = async (formData) => {
+    const createProduct = async (formData) => {
         setLoading(true);
         setError(null);
         try {
@@ -22,8 +22,7 @@ function useLoginUser() {
 
             if (response.ok) {
                 const res = await response.json();
-                // Guardar token en sessionStorage
-                sessionStorage.setItem("token", res.token);
+                console.log(res);
                 setDone(true);
                 return res;
             } else {
@@ -39,7 +38,7 @@ function useLoginUser() {
         }
     };
 
-    return { done, error, loginUser, loading };
+    return { createProduct, done, error, loading };
 }
 
-export default useLoginUser;
+export default useCreateProduct;

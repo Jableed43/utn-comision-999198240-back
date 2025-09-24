@@ -1,31 +1,26 @@
 import { useState } from "react";
 
 /**
- * Hook para obtener la lista de usuarios
+ * Hook para obtener el estado de productos
  * @returns {Object} Objeto con funciones y estados
  */
-function useFetchUsers() {
+function useGetProductStatus() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/getUsers";
+    const initialUrl = "http://localhost:3000/api/product/status";
 
-    const fetchUsers = async () => {
+    const getProductStatus = async () => {
         setLoading(true);
         setError(null);
         try {
             const response = await fetch(initialUrl);
 
             if (response.ok) {
-                const users = await response.json();
-                console.log(users);
+                const status = await response.json();
+                console.log(status);
                 setDone(true);
-                return users;
-            } else if (response.status === 204) {
-                // No hay usuarios en la base de datos
-                console.log('No hay usuarios en la base de datos');
-                setDone(true);
-                return [];
+                return status;
             } else {
                 throw new Error(`Error en la respuesta de la api: ${response.statusText}`);
             }
@@ -33,13 +28,13 @@ function useFetchUsers() {
             console.error(error.message);
             setError(error);
             setDone(true);
-            return [];
+            return null;
         } finally {
             setLoading(false);
         }
     };
 
-    return { fetchUsers, error, loading, done };
+    return { getProductStatus, error, loading, done };
 }
 
-export default useFetchUsers;
+export default useGetProductStatus;

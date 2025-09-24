@@ -1,31 +1,30 @@
 import { useState } from "react";
 
 /**
- * Hook para obtener la lista de usuarios
+ * Hook para buscar producto por nombre
  * @returns {Object} Objeto con funciones y estados
  */
-function useFetchUsers() {
+function useFindProductByName() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/getUsers";
+    const initialUrl = "http://localhost:3000/api/product/name";
 
-    const fetchUsers = async () => {
+    const findProductByName = async (name) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(initialUrl);
+            const response = await fetch(initialUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name })
+            });
 
             if (response.ok) {
-                const users = await response.json();
-                console.log(users);
+                const product = await response.json();
+                console.log(product);
                 setDone(true);
-                return users;
-            } else if (response.status === 204) {
-                // No hay usuarios en la base de datos
-                console.log('No hay usuarios en la base de datos');
-                setDone(true);
-                return [];
+                return product;
             } else {
                 throw new Error(`Error en la respuesta de la api: ${response.statusText}`);
             }
@@ -33,13 +32,13 @@ function useFetchUsers() {
             console.error(error.message);
             setError(error);
             setDone(true);
-            return [];
+            return null;
         } finally {
             setLoading(false);
         }
     };
 
-    return { fetchUsers, error, loading, done };
+    return { findProductByName, error, loading, done };
 }
 
-export default useFetchUsers;
+export default useFindProductByName;

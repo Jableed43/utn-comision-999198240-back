@@ -1,29 +1,27 @@
 import { useState } from "react";
 
 /**
- * Hook para autenticación de usuarios
+ * Hook para eliminar productos
  * @returns {Object} Objeto con funciones y estados
  */
-function useLoginUser() {
+function useDeleteProduct() {
     const [error, setError] = useState();
     const [done, setDone] = useState();
     const [loading, setLoading] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/login";
+    const baseUrl = "http://localhost:3000/api/product/delete";
 
-    const loginUser = async (formData) => {
+    const deleteProduct = async (id) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(initialUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+            const response = await fetch(`${baseUrl}/${id}`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" }
             });
 
             if (response.ok) {
                 const res = await response.json();
-                // Guardar token en sessionStorage
-                sessionStorage.setItem("token", res.token);
+                console.log(res);
                 setDone(true);
                 return res;
             } else {
@@ -39,7 +37,7 @@ function useLoginUser() {
         }
     };
 
-    return { done, error, loginUser, loading };
+    return { deleteProduct, done, error, loading };
 }
 
-export default useLoginUser;
+export default useDeleteProduct;

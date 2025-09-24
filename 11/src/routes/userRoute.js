@@ -7,7 +7,7 @@ import {verifyTokenMiddleware} from '../middlewares/verifyTokenMiddleware.js'
 
 export const userRoute = express.Router()
 
-// Los endpoints -> http://localhost:3001/api/user/create
+// Los endpoints -> http://localhost:3000/api/user/create
 
 //Endpoints
 // Verbo http +  path + controller + service

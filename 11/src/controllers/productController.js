@@ -14,6 +14,9 @@ export const getProducts = async (req, res) => {
         const products = await getProductsService()
         return res.status(200).json(products)
     } catch (error) {
+        if(error.statusCode === 204){
+            return res.sendStatus(204)
+        }
         if(error.statusCode === 400){
             return res.status(400).json({ message: error.message })
         }
