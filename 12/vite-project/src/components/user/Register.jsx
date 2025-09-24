@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useRegisterUser from "../../hooks/useRegisterUser";
+import useRegisterUser from "../../hooks/users/useRegisterUser";
 
-export function Register() {
+export const Register = () => {
   // El estado de form tiene los mismos campos pero vacios
   const [form, setForm] = useState({
     name: "",

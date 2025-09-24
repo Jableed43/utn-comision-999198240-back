@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useLoginUser from "../../hooks/useLoginUser";
+import useLoginUser from "../../hooks/users/useLoginUser";
 
-export function Login() {
+export const Login = () => {
 
     const [form, setForm] = useState({
         email: "",

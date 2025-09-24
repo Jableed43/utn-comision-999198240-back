@@ -50,6 +50,7 @@ export const updateUserService = async (userId, updateData) => {
     // new true devuelve el documento modificado y actualizado
     // Si no lo pones te devuelve el documento viejo
     const updatedUser = await User.findByIdAndUpdate({ _id: userId  }, updateData, {new: true} )
+    
     return updatedUser;
 }
 

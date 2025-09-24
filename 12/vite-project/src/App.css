@@ -23,3 +23,12 @@ form{
     flex-direction: column;
     align-items: center;
 }
+
+.highlighted{
+  color: green;
+}
+
+.no-highlighted{
+  color: gray;
+  font-style: italic;
+}

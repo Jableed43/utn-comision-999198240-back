@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useUpdateUser from "../../hooks/users/useUpdateUser";
 
-export function Edit({userId}) {
+export const Edit = ({userData}) => {
+  const { updateUser, error, loading, done } = useUpdateUser()
+
   // El estado de form tiene los mismos campos pero vacios
   const [form, setForm] = useState({
     name: "",
@@ -10,10 +13,29 @@ export function Edit({userId}) {
     password: "",
   });
 
+  useEffect(() => {
+    if(userData){
+      setForm({
+    name: userData.name,
+    lastName: userData.lastName,
+    email: userData.email,
+    age: userData.age,
+  })
+    }
+  }, [userData])
+
   const handleEdit = async (e) => {
     e.preventDefault();
+    const response = await updateUser(userData._id, form)
     /* Logica de uso del hook */
-    console.log(userId)
+    setForm({
+    name: "",
+    lastName: "",
+    email: "",
+    age: "",
+    password: ""
+  })
+  console.log({response, location: "edit"})
   };
 
   return (
