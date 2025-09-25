@@ -1,4 +1,5 @@
 import React from 'react';
+import { statusMap } from './ProductForm';
 
 const ProductsList = ({ products, onEdit, onDelete, loading, error }) => {
     // Loading state
@@ -52,7 +53,7 @@ const ProductsList = ({ products, onEdit, onDelete, loading, error }) => {
                             <p><strong>Stock:</strong> {product.stock} unidades</p>
                         )}
                         {product.status && (
-                            <p><strong>Estado:</strong> {product.status}</p>
+                            <p><strong>Estado:</strong> {statusMap[product.status]}</p>
                         )}
                     </div>
                     <div className="card-actions">
