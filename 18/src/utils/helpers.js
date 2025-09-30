@@ -1,26 +1,34 @@
-// Helpers para Handlebars
+// ===== HELPERS DE HANDLEBARS =====
+// Estos helpers nos ayudan a mostrar datos en las vistas de manera más fácil
+// Son funciones que podemos usar dentro de los templates de Handlebars
+
 export const registerHelpers = (Handlebars) => {
-    // Helper para comparaciones
+    // Helper para comparar valores (muy útil para formularios)
+    // Uso: {{#if (eq status "AVAILABLE")}}Disponible{{/if}}
     Handlebars.registerHelper('eq', function (a, b) {
         return a === b;
     });
 
-    // Helper para convertir a string
+    // Helper para convertir valores a string (útil para comparar IDs)
+    // Uso: {{#if (eq (toString _id) (toString ../product.category._id))}}selected{{/if}}
     Handlebars.registerHelper('toString', function (value) {
         return value ? value.toString() : '';
     });
 
-    // Helper para lógica AND
+    // Helper para lógica AND (Y lógico)
+    // Uso: {{#if (and user.isActive user.hasPermission)}}Acceso permitido{{/if}}
     Handlebars.registerHelper('and', function (a, b) {
         return a && b;
     });
 
-    // Helper para comparaciones mayores que
+    // Helper para comparar si un valor es mayor que otro
+    // Uso: {{#if (gt price 100)}}Precio alto{{/if}}
     Handlebars.registerHelper('gt', function (a, b) {
         return a > b;
     });
 
-    // Helper para formatear fechas
+    // Helper para formatear fechas de manera legible
+    // Uso: {{formatDate user.createdAt}} -> "15 ene 2024"
     Handlebars.registerHelper('formatDate', function (date) {
         if (!date) return '';
         return new Date(date).toLocaleDateString('es-ES', {

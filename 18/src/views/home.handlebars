@@ -1,43 +1,29 @@
 <div class="home-content">
-    <h1><i class="fas fa-rocket"></i> Bienvenido al Sistema de Gestión</h1>
-    <p>Un sistema CRUD completo desarrollado con Node.js, Express.js, MongoDB y Handlebars</p>
+    <h1>Sistema CRUD Educativo</h1>
+    <p>Un sistema completo de gestión desarrollado con Node.js, Express, MongoDB y Handlebars</p>
     
-    <!-- Sección de Autenticación -->
-    <div class="card" style="margin-bottom: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-        <div class="card-header" style="background: rgba(255,255,255,0.1); border: none;">
+    <!-- Sección de Autenticación Simple -->
+    <div class="card" style="background: #007bff; color: white; margin-bottom: 2rem;">
+        <div class="card-header">
             <i class="fas fa-user-shield"></i> Acceso al Sistema
         </div>
         <div style="padding: 1.5rem;">
             {{#if session.userId}}
                 <div style="text-align: center;">
-                    <div style="margin-bottom: 1rem;">
-                        <i class="fas fa-user-circle" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
-                        <h3 style="margin: 0; color: white;">¡Hola {{session.userName}}!</h3>
-                        <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Sesión activa - {{session.userEmail}}</p>
-                    </div>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="/user/logout" class="btn" style="background: #dc3545; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                        </a>
-                        <a href="/user/getAll" class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.3);">
-                            <i class="fas fa-users"></i> Ver Usuarios
-                        </a>
+                    <h3>¡Hola {{session.userName}}!</h3>
+                    <p>Sesión activa - {{session.userEmail}}</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
+                        <a href="/user/getAll" class="btn btn-secondary">Ver Usuarios</a>
                     </div>
                 </div>
             {{else}}
                 <div style="text-align: center;">
-                    <div style="margin-bottom: 1rem;">
-                        <i class="fas fa-sign-in-alt" style="font-size: 3rem; margin-bottom: 0.5rem;"></i>
-                        <h3 style="margin: 0; color: white;">Accede a tu cuenta</h3>
-                        <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Inicia sesión para acceder a todas las funcionalidades</p>
-                    </div>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="/user/login" class="btn" style="background: #28a745; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                        </a>
-                        <a href="/user/create" class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.3);">
-                            <i class="fas fa-user-plus"></i> Registrarse
-                        </a>
+                    <h3>Accede a tu cuenta</h3>
+                    <p>Inicia sesión para acceder a todas las funcionalidades</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="/user/login" class="btn btn-success">Iniciar Sesión</a>
+                        <a href="/user/create" class="btn btn-secondary">Registrarse</a>
                     </div>
                 </div>
             {{/if}}
@@ -48,26 +34,18 @@
         <div class="feature-card">
             <h3><i class="fas fa-users"></i> Gestión de Usuarios</h3>
             <ul>
-                <li><i class="fas fa-user-plus"></i> Registro de nuevos usuarios</li>
-                <li><i class="fas fa-sign-in-alt"></i> Sistema de autenticación</li>
-                <li><i class="fas fa-user-edit"></i> Edición de perfiles</li>
-                <li><i class="fas fa-user-times"></i> Eliminación de usuarios</li>
+                <li>Registro de nuevos usuarios</li>
+                <li>Sistema de autenticación</li>
+                <li>Edición de perfiles</li>
+                <li>Eliminación de usuarios</li>
             </ul>
-            <div class="mt-3">
-                <a href="/user/getAll" class="btn btn-primary">
-                    <i class="fas fa-list"></i> Ver Usuarios
-                </a>
-                <a href="/user/create" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Crear Usuario
-                </a>
+            <div style="margin-top: 1rem;">
+                <a href="/user/getAll" class="btn btn-primary">Ver Usuarios</a>
+                <a href="/user/create" class="btn btn-success">Crear Usuario</a>
                 {{#if session.userId}}
-                <a href="/user/logout" class="btn btn-danger" style="background: #dc3545; color: white;">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                </a>
+                <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
                 {{else}}
-                <a href="/user/login" class="btn btn-info" style="background: #17a2b8; color: white;">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                </a>
+                <a href="/user/login" class="btn btn-secondary">Iniciar Sesión</a>
                 {{/if}}
             </div>
         </div>
@@ -75,37 +53,28 @@
         <div class="feature-card">
             <h3><i class="fas fa-tags"></i> Gestión de Categorías</h3>
             <ul>
-                <li><i class="fas fa-plus-circle"></i> Crear nuevas categorías</li>
-                <li><i class="fas fa-list"></i> Listar todas las categorías</li>
-                <li><i class="fas fa-edit"></i> Editar categorías existentes</li>
-                <li><i class="fas fa-trash"></i> Eliminar categorías</li>
+                <li>Crear nuevas categorías</li>
+                <li>Listar todas las categorías</li>
+                <li>Eliminar categorías</li>
             </ul>
-            <div class="mt-3">
-                <a href="/category/getAll" class="btn btn-primary">
-                    <i class="fas fa-list"></i> Ver Categorías
-                </a>
-                <a href="/category/create" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Crear Categoría
-                </a>
+            <div style="margin-top: 1rem;">
+                <a href="/category/getAll" class="btn btn-primary">Ver Categorías</a>
+                <a href="/category/create" class="btn btn-success">Crear Categoría</a>
             </div>
         </div>
         
         <div class="feature-card">
             <h3><i class="fas fa-box"></i> Gestión de Productos</h3>
             <ul>
-                <li><i class="fas fa-plus-circle"></i> Crear nuevos productos</li>
-                <li><i class="fas fa-list"></i> Listar todos los productos</li>
-                <li><i class="fas fa-edit"></i> Editar productos existentes</li>
-                <li><i class="fas fa-trash"></i> Eliminar productos</li>
-                <li><i class="fas fa-link"></i> Asociar con categorías</li>
+                <li>Crear nuevos productos</li>
+                <li>Listar todos los productos</li>
+                <li>Editar productos existentes</li>
+                <li>Eliminar productos</li>
+                <li>Asociar con categorías</li>
             </ul>
-            <div class="mt-3">
-                <a href="/product/getAll" class="btn btn-primary">
-                    <i class="fas fa-list"></i> Ver Productos
-                </a>
-                <a href="/product/create" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Crear Producto
-                </a>
+            <div style="margin-top: 1rem;">
+                <a href="/product/getAll" class="btn btn-primary">Ver Productos</a>
+                <a href="/product/create" class="btn btn-success">Crear Producto</a>
             </div>
         </div>
     </div>
@@ -114,31 +83,31 @@
         <div class="card-header">
             <i class="fas fa-cogs"></i> Características Técnicas
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div>
                 <h4><i class="fas fa-shield-alt"></i> Seguridad</h4>
                 <ul>
-                    <li><i class="fas fa-key"></i> Autenticación con JWT</li>
-                    <li><i class="fas fa-lock"></i> Encriptación de contraseñas</li>
-                    <li><i class="fas fa-check-circle"></i> Validaciones robustas</li>
+                    <li>Autenticación con JWT</li>
+                    <li>Encriptación de contraseñas</li>
+                    <li>Validaciones robustas</li>
                 </ul>
             </div>
             
-            <div class="feature-card">
+            <div>
                 <h4><i class="fas fa-database"></i> Base de Datos</h4>
                 <ul>
-                    <li><i class="fas fa-leaf"></i> MongoDB con Mongoose</li>
-                    <li><i class="fas fa-link"></i> Relaciones entre entidades</li>
-                    <li><i class="fas fa-search"></i> Consultas optimizadas</li>
+                    <li>MongoDB con Mongoose</li>
+                    <li>Relaciones entre entidades</li>
+                    <li>Consultas optimizadas</li>
                 </ul>
             </div>
             
-            <div class="feature-card">
+            <div>
                 <h4><i class="fas fa-paint-brush"></i> Interfaz</h4>
                 <ul>
-                    <li><i class="fas fa-mobile-alt"></i> Diseño responsive</li>
-                    <li><i class="fas fa-eye"></i> Interfaz intuitiva</li>
-                    <li><i class="fas fa-bolt"></i> Animaciones suaves</li>
+                    <li>Diseño responsive</li>
+                    <li>Interfaz intuitiva</li>
+                    <li>Fácil de entender</li>
                 </ul>
             </div>
         </div>
@@ -148,7 +117,7 @@
         <div class="card-header">
             <i class="fas fa-info-circle"></i> Información del Sistema
         </div>
-        <div class="text-center">
+        <div style="text-align: center;">
             <p><strong>Versión:</strong> 1.0.0</p>
             <p><strong>Framework:</strong> Node.js + Express.js</p>
             <p><strong>Base de Datos:</strong> MongoDB</p>
