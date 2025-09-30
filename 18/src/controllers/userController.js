@@ -79,13 +79,14 @@ export const validate = async (req, res) => {
         const { email, password } = req.body
         const result = await validateUserService(email, password)
         
-        // Guardar token en sesión
+        // Guardar información en sesión
         req.session.token = result.token
         req.session.userId = result.userId
         req.session.userEmail = result.userEmail
+        req.session.userName = result.userName
         
-        req.session.message = "Inicio de sesión exitoso"
-        res.redirect("/user/getAll")
+        req.session.message = `¡Bienvenido/a ${result.userName}!`
+        res.redirect("/")
     } catch (error) {
         req.session.message = error.message
         res.redirect("/user/login")

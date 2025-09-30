@@ -395,14 +395,17 @@
                         <i class="fas fa-box"></i> Productos
                     </a>
                     {{#if session.userId}}
-                        <a href="/user/logout">
+                        <span style="margin-right: 1rem; color: #fff; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-circle"></i> {{session.userName}}
+                        </span>
+                        <a href="/user/logout" style="background: #dc3545; color: white; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none;">
                             <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                         </a>
                     {{else}}
-                        <a href="/user/login">
+                        <a href="/user/login" style="background: #28a745; color: white; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none;">
                             <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                         </a>
-                        <a href="/user/create">
+                        <a href="/user/create" style="background: #667eea; color: white; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none;">
                             <i class="fas fa-user-plus"></i> Registrarse
                         </a>
                     {{/if}}
