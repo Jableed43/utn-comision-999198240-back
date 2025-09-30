@@ -1,18 +1,10 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-tag"></i> Crear Categoría
+<h2>Crear Categoría</h2>
+<form action="/category/create" method="POST">
+    <div>
+        <label for="name">Nombre de la Categoría:</label>
+        <input type="text" id="name" name="name" required>
     </div>
-    <form action="/category/create" method="POST">
-        <div class="form-group">
-            <label for="name">Nombre de la Categoría:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        
-        <button type="submit" class="btn btn-success">
-            <i class="fas fa-save"></i> Crear Categoría
-        </button>
-        <a href="/category/getAll" class="btn btn-secondary">
-            <i class="fas fa-list"></i> Ver Categorías
-        </a>
-    </form>
-</div>
+    
+    <button type="submit" class="btn btn-success">Crear Categoría</button>
+    <a href="/category/getAll" class="btn">Ver Categorías</a>
+</form>

@@ -1,128 +1,35 @@
-<div class="home-content">
-    <h1>Sistema CRUD Educativo</h1>
-    <p>Un sistema completo de gestión desarrollado con Node.js, Express, MongoDB y Handlebars</p>
-    
-    <!-- Sección de Autenticación Simple -->
-    <div class="card" style="background: #007bff; color: white; margin-bottom: 2rem;">
-        <div class="card-header">
-            <i class="fas fa-user-shield"></i> Acceso al Sistema
-        </div>
-        <div style="padding: 1.5rem;">
-            {{#if session.userId}}
-                <div style="text-align: center;">
-                    <h3>¡Hola {{session.userName}}!</h3>
-                    <p>Sesión activa - {{session.userEmail}}</p>
-                    <div style="margin-top: 1rem;">
-                        <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
-                        <a href="/user/getAll" class="btn btn-secondary">Ver Usuarios</a>
-                    </div>
-                </div>
-            {{else}}
-                <div style="text-align: center;">
-                    <h3>Accede a tu cuenta</h3>
-                    <p>Inicia sesión para acceder a todas las funcionalidades</p>
-                    <div style="margin-top: 1rem;">
-                        <a href="/user/login" class="btn btn-success">Iniciar Sesión</a>
-                        <a href="/user/create" class="btn btn-secondary">Registrarse</a>
-                    </div>
-                </div>
-            {{/if}}
-        </div>
-    </div>
-    
-    <div class="features-grid">
-        <div class="feature-card">
-            <h3><i class="fas fa-users"></i> Gestión de Usuarios</h3>
-            <ul>
-                <li>Registro de nuevos usuarios</li>
-                <li>Sistema de autenticación</li>
-                <li>Edición de perfiles</li>
-                <li>Eliminación de usuarios</li>
-            </ul>
-            <div style="margin-top: 1rem;">
-                <a href="/user/getAll" class="btn btn-primary">Ver Usuarios</a>
-                <a href="/user/create" class="btn btn-success">Crear Usuario</a>
-                {{#if session.userId}}
-                <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
-                {{else}}
-                <a href="/user/login" class="btn btn-secondary">Iniciar Sesión</a>
-                {{/if}}
-            </div>
-        </div>
-        
-        <div class="feature-card">
-            <h3><i class="fas fa-tags"></i> Gestión de Categorías</h3>
-            <ul>
-                <li>Crear nuevas categorías</li>
-                <li>Listar todas las categorías</li>
-                <li>Eliminar categorías</li>
-            </ul>
-            <div style="margin-top: 1rem;">
-                <a href="/category/getAll" class="btn btn-primary">Ver Categorías</a>
-                <a href="/category/create" class="btn btn-success">Crear Categoría</a>
-            </div>
-        </div>
-        
-        <div class="feature-card">
-            <h3><i class="fas fa-box"></i> Gestión de Productos</h3>
-            <ul>
-                <li>Crear nuevos productos</li>
-                <li>Listar todos los productos</li>
-                <li>Editar productos existentes</li>
-                <li>Eliminar productos</li>
-                <li>Asociar con categorías</li>
-            </ul>
-            <div style="margin-top: 1rem;">
-                <a href="/product/getAll" class="btn btn-primary">Ver Productos</a>
-                <a href="/product/create" class="btn btn-success">Crear Producto</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-cogs"></i> Características Técnicas
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-            <div>
-                <h4><i class="fas fa-shield-alt"></i> Seguridad</h4>
-                <ul>
-                    <li>Autenticación con JWT</li>
-                    <li>Encriptación de contraseñas</li>
-                    <li>Validaciones robustas</li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4><i class="fas fa-database"></i> Base de Datos</h4>
-                <ul>
-                    <li>MongoDB con Mongoose</li>
-                    <li>Relaciones entre entidades</li>
-                    <li>Consultas optimizadas</li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4><i class="fas fa-paint-brush"></i> Interfaz</h4>
-                <ul>
-                    <li>Diseño responsive</li>
-                    <li>Interfaz intuitiva</li>
-                    <li>Fácil de entender</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-info-circle"></i> Información del Sistema
-        </div>
-        <div style="text-align: center;">
-            <p><strong>Versión:</strong> 1.0.0</p>
-            <p><strong>Framework:</strong> Node.js + Express.js</p>
-            <p><strong>Base de Datos:</strong> MongoDB</p>
-            <p><strong>Template Engine:</strong> Handlebars</p>
-            <p><strong>Autenticación:</strong> JWT + bcrypt</p>
-        </div>
-    </div>
+<h1>Sistema CRUD Educativo</h1>
+<p>Un sistema completo de gestión desarrollado con Node.js, Express, MongoDB y Handlebars</p>
+
+<!-- Sección de Autenticación -->
+<div style="background: #e9ecef; padding: 20px; margin: 20px 0; border: 1px solid #ccc;">
+    {{#if session.userId}}
+        <h3>¡Hola {{session.userName}}!</h3>
+        <p>Sesión activa - {{session.userEmail}}</p>
+        <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
+        <a href="/user/getAll" class="btn">Ver Usuarios</a>
+    {{else}}
+        <h3>Accede a tu cuenta</h3>
+        <p>Inicia sesión para acceder a todas las funcionalidades</p>
+        <a href="/user/login" class="btn btn-success">Iniciar Sesión</a>
+        <a href="/user/create" class="btn">Registrarse</a>
+    {{/if}}
 </div>
+
+<!-- Funcionalidades del Sistema -->
+<h2>Funcionalidades Disponibles</h2>
+<ul>
+    <li><strong>Usuarios:</strong> <a href="/user/getAll">Ver lista</a> | <a href="/user/create">Crear nuevo</a></li>
+    <li><strong>Categorías:</strong> <a href="/category/getAll">Ver lista</a> | <a href="/category/create">Crear nueva</a></li>
+    <li><strong>Productos:</strong> <a href="/product/getAll">Ver lista</a> | <a href="/product/create">Crear nuevo</a></li>
+</ul>
+
+<!-- Información Técnica -->
+<h2>Información Técnica</h2>
+<ul>
+    <li><strong>Backend:</strong> Node.js + Express</li>
+    <li><strong>Base de datos:</strong> MongoDB</li>
+    <li><strong>Frontend:</strong> Handlebars</li>
+    <li><strong>Autenticación:</strong> Sessions</li>
+    <li><strong>Validaciones:</strong> Mongoose</li>
+</ul>

@@ -1,39 +1,30 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-tags"></i> Lista de Categorías
-    </div>
-    
-    <div style="margin-bottom: 1rem;">
-        <a href="/category/create" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear Categoría
-        </a>
-    </div>
-    
-    {{#if categories.length}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each categories}}
-                <tr>
-                    <td>{{name}}</td>
-                    <td>
-                        <form action="/category/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
-                            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
-                                    onclick="return confirm('¿Estás seguro de que quieres eliminar la categoría {{name}}?')">
-                                <i class="fas fa-trash"></i> Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    {{else}}
-        <p>No hay categorías registradas.</p>
-    {{/if}}
-</div>
+<h2>Lista de Categorías</h2>
+<a href="/category/create" class="btn btn-success">Crear Categoría</a>
+
+{{#if categories.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categories}}
+            <tr>
+                <td>{{name}}</td>
+                <td>
+                    <form action="/category/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que quieres eliminar la categoría {{name}}?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay categorías registradas.</p>
+{{/if}}

@@ -1,33 +1,25 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-user-edit"></i> Editar Usuario
+<h2>Editar Usuario</h2>
+<form action="/user/update/{{user._id}}?_method=patch" method="post">
+    <div>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="{{user.name}}" required>
     </div>
-    <form action="/user/update/{{user._id}}?_method=patch" method="post">
-        <div class="form-group">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" value="{{user.name}}" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="lastName">Apellido:</label>
-            <input type="text" id="lastName" name="lastName" value="{{user.lastName}}" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{user.email}}" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="age">Edad:</label>
-            <input type="number" id="age" name="age" value="{{user.age}}" required>
-        </div>
-        
-        <button type="submit" class="btn btn-success">
-            <i class="fas fa-save"></i> Actualizar Usuario
-        </button>
-        <a href="/user/getAll" class="btn btn-secondary">
-            <i class="fas fa-list"></i> Ver Usuarios
-        </a>
-    </form>
-</div>
+    
+    <div>
+        <label for="lastName">Apellido:</label>
+        <input type="text" id="lastName" name="lastName" value="{{user.lastName}}" required>
+    </div>
+    
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{user.email}}" required>
+    </div>
+    
+    <div>
+        <label for="age">Edad:</label>
+        <input type="number" id="age" name="age" value="{{user.age}}" required>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Actualizar Usuario</button>
+    <a href="/user/getAll" class="btn">Ver Usuarios</a>
+</form>

@@ -1,48 +1,37 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-users"></i> Lista de Usuarios
-    </div>
-    
-    <div style="margin-bottom: 1rem;">
-        <a href="/user/create" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear Usuario
-        </a>
-    </div>
-    
-    {{#if users.length}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Edad</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each users}}
-                <tr>
-                    <td>{{name}}</td>
-                    <td>{{lastName}}</td>
-                    <td>{{email}}</td>
-                    <td>{{age}}</td>
-                    <td>
-                        <a href="/user/update/{{_id}}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <form action="/user/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
-                            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
-                                    onclick="return confirm('¿Estás seguro de que quieres eliminar a {{name}} {{lastName}}?')">
-                                <i class="fas fa-trash"></i> Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    {{else}}
-        <p>No hay usuarios registrados.</p>
-    {{/if}}
-</div>
+<h2>Lista de Usuarios</h2>
+<a href="/user/create" class="btn btn-success">Crear Usuario</a>
+
+{{#if users.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{lastName}}</td>
+                <td>{{email}}</td>
+                <td>{{age}}</td>
+                <td>
+                    <a href="/user/update/{{_id}}" class="btn">Editar</a>
+                    <form action="/user/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que quieres eliminar a {{name}} {{lastName}}?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay usuarios registrados.</p>
+{{/if}}

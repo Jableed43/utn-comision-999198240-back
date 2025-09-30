@@ -1,42 +1,34 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-box"></i> Crear Producto
+<h2>Crear Producto</h2>
+<form action="/product/create" method="POST">
+    <div>
+        <label for="name">Nombre del Producto:</label>
+        <input type="text" id="name" name="name" required>
     </div>
-    <form action="/product/create" method="POST">
-        <div class="form-group">
-            <label for="name">Nombre del Producto:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="price">Precio:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="category">Categoría:</label>
-            <select id="category" name="category">
-                <option value="">Sin categoría</option>
-                {{#each categories}}
-                <option value="{{_id}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="status">Estado:</label>
-            <select id="status" name="status" required>
-                <option value="AVAILABLE">Disponible</option>
-                <option value="NOT AVAILABLE">No Disponible</option>
-                <option value="DISCONTINUED">Descontinuado</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn btn-success">
-            <i class="fas fa-save"></i> Crear Producto
-        </button>
-        <a href="/product/getAll" class="btn btn-secondary">
-            <i class="fas fa-list"></i> Ver Productos
-        </a>
-    </form>
-</div>
+    
+    <div>
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+    </div>
+    
+    <div>
+        <label for="category">Categoría:</label>
+        <select id="category" name="category">
+            <option value="">Sin categoría</option>
+            {{#each categories}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    
+    <div>
+        <label for="status">Estado:</label>
+        <select id="status" name="status" required>
+            <option value="AVAILABLE">Disponible</option>
+            <option value="NOT AVAILABLE">No Disponible</option>
+            <option value="DISCONTINUED">Descontinuado</option>
+        </select>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Crear Producto</button>
+    <a href="/product/getAll" class="btn">Ver Productos</a>
+</form>

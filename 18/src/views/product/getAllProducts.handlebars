@@ -1,72 +1,47 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fas fa-boxes"></i> Lista de Productos
-    </div>
-    
-    <div style="margin-bottom: 1rem;">
-        <a href="/product/create" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear Producto
-        </a>
-    </div>
-    
-    {{#if products.length}}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Categoría</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each products}}
-                <tr>
-                    <td>{{name}}</td>
-                    <td>${{price}}</td>
-                    <td>{{#if category}}{{category.name}}{{else}}Sin categoría{{/if}}</td>
-                    <td>
-                        {{#if status}}
-                            {{#if (eq status 'AVAILABLE')}}
-                                <span class="badge" style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-check"></i> Disponible
-                                </span>
-                            {{else if (eq status 'NOT AVAILABLE')}}
-                                <span class="badge" style="background: #ffc107; color: #212529; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-exclamation-triangle"></i> No Disponible
-                                </span>
-                            {{else if (eq status 'DISCONTINUED')}}
-                                <span class="badge" style="background: #dc3545; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-ban"></i> Descontinuado
-                                </span>
-                            {{else}}
-                                <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-question"></i> {{status}}
-                                </span>
-                            {{/if}}
-                        {{else}}
-                            <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                Sin estado
-                            </span>
-                        {{/if}}
-                    </td>
-                    <td>
-                        <a href="/product/update/{{_id}}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <form action="/product/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
-                            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
-                                    onclick="return confirm('¿Estás seguro de que quieres eliminar el producto {{name}}?')">
-                                <i class="fas fa-trash"></i> Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    {{else}}
-        <p>No hay productos registrados.</p>
-    {{/if}}
-</div>
+<h2>Lista de Productos</h2>
+<a href="/product/create" class="btn btn-success">Crear Producto</a>
+
+{{#if products.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{name}}</td>
+                <td>${{price}}</td>
+                <td>{{#if category}}{{category.name}}{{else}}Sin categoría{{/if}}</td>
+                <td>
+                    {{#if (eq status 'AVAILABLE')}}
+                        Disponible
+                    {{else if (eq status 'NOT AVAILABLE')}}
+                        No Disponible
+                    {{else if (eq status 'DISCONTINUED')}}
+                        Descontinuado
+                    {{else}}
+                        {{status}}
+                    {{/if}}
+                </td>
+                <td>
+                    <a href="/product/update/{{_id}}" class="btn">Editar</a>
+                    <form action="/product/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que quieres eliminar el producto {{name}}?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay productos registrados.</p>
+{{/if}}
