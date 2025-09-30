@@ -1,0 +1,38 @@
+<form action="/product/update/{{product._id}}?_method=patch" method="post" >
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" value="{{product.name}}">
+    <br>
+    <label for="price">Precio</label>
+    <input type="text" id="price" name="price" value="{{product.price}}">
+    <br>
+    <label for="profitRate">Rango de ganancia</label>
+    <input type="text" id="profitRate" name="profitRate" value="{{product.profitRate}}">
+    <br>
+    <label for="description">Descripcion</label>
+    <textarea id="description" name="description" value="{{product.description}}"></textarea>
+    <br>
+    {{!-- hacer llamado al endpoint de status para traer los estados posibles --}}
+    <label for="status">Estado</label>
+    <select name="status" id="status">
+        <option value="" disabled selected > Seleccionar </option>
+        <option value="AVAILABLE" {{#eq product.status "AVAILABLE" }} selected {{/eq}}>Disponible</option>
+        <option value="NOT AVAILABLE" {{#eq product.status "NOT AVAILABLE" }} selected {{/eq}}>No disponible</option>
+        <option value="DISCONTINUED" {{#eq product.status "DISCONTINUED" }} selected {{/eq}}>Descontinuado</option>
+    </select>
+    <br>
+    <label for="category">Categoria</label>
+    <select name="category" id="category">
+        <option value="" disabled selected > Seleccionar </option>
+        <option value="68d5bffd6ab0869113fd8a81" {{#eq product.category._id "68d5bffd6ab0869113fd8a81" }} selected  {{/eq}} > </option>
+    </select>
+    <br>
+    <label for="highlighted">Destacado</label>
+    <select name="highlighted" id="highlighted">
+        <option value="" disabled selected > Seleccionar </option>
+        <option value="true" {{#eq product.highlighted true }} selected {{/eq}}> Destacado </option>
+        <option value="false" {{#eq product.highlighted false }} selected {{/eq}}> No Destacado </option>
+    </select>
+    <br>
+    <button type="submit">Enviar</button>
+    <button type="reset">Resetear</button>
+</form>

@@ -1,0 +1,11 @@
+.card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card{
+    border: solid black;
+    text-align: center;
+    padding: 20px;
+}
