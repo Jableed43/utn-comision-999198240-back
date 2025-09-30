@@ -1,16 +1,30 @@
 {
-  "name": "11",
+  "name": "sistema-gestion-crud-handlebars",
   "version": "1.0.0",
+  "description": "Sistema CRUD completo con Node.js, Express.js, MongoDB y Handlebars",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "mock:all": "node mock-data/insert-all.js",
+    "mock:categories": "node mock-data/categories.js",
+    "mock:users": "node mock-data/users.js",
+    "mock:products": "node mock-data/products.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "handlebars",
+    "crud",
+    "mvc",
+    "jwt",
+    "authentication"
+  ],
+  "author": "Sistema de Gestión",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
@@ -18,6 +32,7 @@
     "express": "^5.1.0",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.2",
+    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mongodb": "^6.19.0",
@@ -27,5 +42,8 @@
     "dotenv": "^17.2.2",
     "nodemon": "^3.1.10",
     "npm-check-updates": "^18.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

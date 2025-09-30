@@ -1,82 +1,129 @@
 import { createUserService, deleteUserService, getUsersService, updateUserService, validateUserService } from "../services/userService.js"
 
-// Controladores: Actuan como intermediario entre cliente y la logica de la aplicacion. Recibe solicitudes las procesa y responde
-// Estos controladores incluyen a los servicios
+// ===== VISTAS =====
 
-// CRUD
+// Vista de registro
+export const createUserView = (req, res) => {
+    res.render("user/createUser", { 
+        title: "Registrar Usuario",
+        message: req.session.message || null
+    })
+}
 
-// CREAR CAPA DE SERVICIOS
+// Vista de login
+export const loginView = (req, res) => {
+    res.render("user/login", { 
+        title: "Iniciar Sesión",
+        message: req.session.message || null
+    })
+}
+
+// Vista de lista de usuarios
+export const getAllUsersView = async (req, res) => {
+    try {
+        const users = await getUsersService()
+        res.render("user/getAllUsers", { 
+            title: "Lista de Usuarios",
+            users: users,
+            message: req.session.message || null
+        })
+    } catch (error) {
+        res.render("user/getAllUsers", { 
+            title: "Lista de Usuarios",
+            users: [],
+            message: "No hay usuarios registrados"
+        })
+    }
+}
+
+// Vista de editar usuario
+export const updateUserView = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const users = await getUsersService()
+        const user = users.find(u => u._id.toString() === userId)
+        
+        if (!user) {
+            req.session.message = "Usuario no encontrado"
+            return res.redirect("/user/getAll")
+        }
+        
+        res.render("user/updateUser", { 
+            title: "Editar Usuario",
+            user: user,
+            message: req.session.message || null
+        })
+    } catch (error) {
+        req.session.message = "Error al cargar usuario"
+        res.redirect("/user/getAll")
+    }
+}
+
+// ===== ACCIONES =====
 
 // Crear usuario
 export const createUser = async (req, res) => {
     try {
         const response = await createUserService(req.body)
-        res.status(201).json(response)
+        req.session.message = "Usuario creado exitosamente"
+        res.redirect("/user/getAll")
     } catch (error) {
-        return res.status(500).json({ message: "Internal server error", error: error.message })
+        req.session.message = error.message
+        res.redirect("/user/create")
     }
 }
 
-// Obtener todos los usuarios
-export const getUsers = async (req, res) => {
-    try {
-       const users = await getUsersService()
-       // 200 significa que la operacion fue exitosa
-       res.status(200).json(users)
-    } catch (error) {
-        console.log({error})
-        // 204 significa no content
-        if(error.statusCode === 204){
-            return res.sendStatus(error.statusCode)
-        }
-        return res.status(500).json({ message: "Internal server error", error: error.message })
-    }
-}
-
-// Borrar el usuario
-export const deleteUser = async (req, res) => {
-    try {
-        // Obtenemos x el path param el id
-        // api/user/delete/:id
-        const userId = req.params.id
-        const result = await deleteUserService(userId)
-        return res.status(200).json(result)
-    } catch (error) {
-        if(error.statusCode === 404){
-            return res.status(error.statusCode).json({ message: error.message })
-        }
-        return res.status(500).json({ message: "Internal server error", error: error.message })
-    }
-}
-
-// Actualizamos usuario
-export const updateUser = async (req, res) => {
-    try {
-        const userId = req.params.id 
-        // Siempre que editamos necesitamos el id y los nuevos datos
-       const updatedUser = await updateUserService(userId, req.body)
-       console.log(updatedUser, "desde el controller")
-       return res.status(201).json(updatedUser)
-    } catch (error) {
-        if(error.statusCode === 404){
-            return res.status(404).json({ message: error.message })
-        }
-        return res.status(500).json({ message: "Internal server error", error: error.message })
-    }
-}
-
-// Autenticar/validar al usuario
+// Autenticación
 export const validate = async (req, res) => {
     try {
-    // Deberiamos tomar los datos que nos mandan en el req
-    const { email, password } = req.body;
-    const result = await validateUserService(email, password)
-    console.log({result})
-        return res.status(200).json(result)
+        const { email, password } = req.body
+        const result = await validateUserService(email, password)
+        
+        // Guardar token en sesión
+        req.session.token = result.token
+        req.session.userId = result.userId
+        req.session.userEmail = result.userEmail
+        
+        req.session.message = "Inicio de sesión exitoso"
+        res.redirect("/user/getAll")
     } catch (error) {
-        if(error.statusCode === 400){
-            return res.status(error.statusCode).json({message: error.message})
-        }
-        return res.status(500).json({message: "Internal server error", error: error.message})
+        req.session.message = error.message
+        res.redirect("/user/login")
     }
+}
+
+// Actualizar usuario
+export const updateUser = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const updatedUser = await updateUserService(userId, req.body)
+        req.session.message = "Usuario actualizado exitosamente"
+        res.redirect("/user/getAll")
+    } catch (error) {
+        req.session.message = error.message
+        res.redirect(`/user/update/${req.params.id}`)
+    }
+}
+
+// Eliminar usuario
+export const deleteUser = async (req, res) => {
+    try {
+        const userId = req.params.id
+        await deleteUserService(userId)
+        req.session.message = "Usuario eliminado exitosamente"
+        res.redirect("/user/getAll")
+    } catch (error) {
+        req.session.message = error.message
+        res.redirect("/user/getAll")
+    }
+}
+
+// Cerrar sesión
+export const logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err)
+        }
+        res.redirect("/")
+    })
 }

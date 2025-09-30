@@ -1,1 +1,108 @@
-<p> hola </p>
+<div class="home-content">
+    <h1><i class="fas fa-rocket"></i> Bienvenido al Sistema de Gestión</h1>
+    <p>Un sistema CRUD completo desarrollado con Node.js, Express.js, MongoDB y Handlebars</p>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3><i class="fas fa-users"></i> Gestión de Usuarios</h3>
+            <ul>
+                <li><i class="fas fa-user-plus"></i> Registro de nuevos usuarios</li>
+                <li><i class="fas fa-sign-in-alt"></i> Sistema de autenticación</li>
+                <li><i class="fas fa-user-edit"></i> Edición de perfiles</li>
+                <li><i class="fas fa-user-times"></i> Eliminación de usuarios</li>
+            </ul>
+            <div class="mt-3">
+                <a href="/user/getAll" class="btn btn-primary">
+                    <i class="fas fa-list"></i> Ver Usuarios
+                </a>
+                <a href="/user/create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Crear Usuario
+                </a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <h3><i class="fas fa-tags"></i> Gestión de Categorías</h3>
+            <ul>
+                <li><i class="fas fa-plus-circle"></i> Crear nuevas categorías</li>
+                <li><i class="fas fa-list"></i> Listar todas las categorías</li>
+                <li><i class="fas fa-edit"></i> Editar categorías existentes</li>
+                <li><i class="fas fa-trash"></i> Eliminar categorías</li>
+            </ul>
+            <div class="mt-3">
+                <a href="/category/getAll" class="btn btn-primary">
+                    <i class="fas fa-list"></i> Ver Categorías
+                </a>
+                <a href="/category/create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Crear Categoría
+                </a>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <h3><i class="fas fa-box"></i> Gestión de Productos</h3>
+            <ul>
+                <li><i class="fas fa-plus-circle"></i> Crear nuevos productos</li>
+                <li><i class="fas fa-list"></i> Listar todos los productos</li>
+                <li><i class="fas fa-edit"></i> Editar productos existentes</li>
+                <li><i class="fas fa-trash"></i> Eliminar productos</li>
+                <li><i class="fas fa-link"></i> Asociar con categorías</li>
+            </ul>
+            <div class="mt-3">
+                <a href="/product/getAll" class="btn btn-primary">
+                    <i class="fas fa-list"></i> Ver Productos
+                </a>
+                <a href="/product/create" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Crear Producto
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-cogs"></i> Características Técnicas
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4><i class="fas fa-shield-alt"></i> Seguridad</h4>
+                <ul>
+                    <li><i class="fas fa-key"></i> Autenticación con JWT</li>
+                    <li><i class="fas fa-lock"></i> Encriptación de contraseñas</li>
+                    <li><i class="fas fa-check-circle"></i> Validaciones robustas</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h4><i class="fas fa-database"></i> Base de Datos</h4>
+                <ul>
+                    <li><i class="fas fa-leaf"></i> MongoDB con Mongoose</li>
+                    <li><i class="fas fa-link"></i> Relaciones entre entidades</li>
+                    <li><i class="fas fa-search"></i> Consultas optimizadas</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h4><i class="fas fa-paint-brush"></i> Interfaz</h4>
+                <ul>
+                    <li><i class="fas fa-mobile-alt"></i> Diseño responsive</li>
+                    <li><i class="fas fa-eye"></i> Interfaz intuitiva</li>
+                    <li><i class="fas fa-bolt"></i> Animaciones suaves</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-info-circle"></i> Información del Sistema
+        </div>
+        <div class="text-center">
+            <p><strong>Versión:</strong> 1.0.0</p>
+            <p><strong>Framework:</strong> Node.js + Express.js</p>
+            <p><strong>Base de Datos:</strong> MongoDB</p>
+            <p><strong>Template Engine:</strong> Handlebars</p>
+            <p><strong>Autenticación:</strong> JWT + bcrypt</p>
+        </div>
+    </div>
+</div>

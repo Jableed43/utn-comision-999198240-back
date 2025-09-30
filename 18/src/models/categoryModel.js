@@ -14,4 +14,4 @@ const categorySchema = new mongoose.Schema({
     // Cuando se cree y cuando se modifique se guardaran en los campos createdAt, updatedAt
     timestamps: true} )
 // El nombre del modelo "category" es el que vamos a utilizar para el ref de productos
-export default mongoose.model("category", categorySchema)
+export default mongoose.model("category", categorySchema, "categories")

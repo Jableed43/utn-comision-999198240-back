@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-plus"></i> Crear Nueva Categoría
+    </div>
+    
+    <form action="/category/create" method="POST" style="max-width: 600px; margin: 0 auto;">
+        <div class="form-group">
+            <label for="name">
+                <i class="fas fa-tag"></i> Nombre de la Categoría:
+            </label>
+            <input type="text" id="name" name="name" required 
+                   placeholder="Ingresa el nombre de la categoría"
+                   style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+        </div>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+            <button type="submit" class="btn btn-success" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-plus"></i> Crear Categoría
+            </button>
+            <a href="/category/getAll" class="btn btn-secondary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-arrow-left"></i> Cancelar
+            </a>
+        </div>
+    </form>
+</div>

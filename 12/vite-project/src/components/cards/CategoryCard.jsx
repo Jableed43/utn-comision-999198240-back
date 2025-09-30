@@ -63,3 +63,4 @@ const CategoryCard = ({ category, onEdit, onDelete }) => {
 };
 
 export default CategoryCard;
+

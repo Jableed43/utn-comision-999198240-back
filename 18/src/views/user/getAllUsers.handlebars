@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-users"></i> Lista de Usuarios
+        <span class="badge" style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-left: 1rem;">
+            {{users.length}} usuarios
+        </span>
+    </div>
+    
+    <div class="mb-3">
+        <a href="/user/create" class="btn btn-success">
+            <i class="fas fa-user-plus"></i> Nuevo Usuario
+        </a>
+        <a href="/" class="btn btn-secondary">
+            <i class="fas fa-home"></i> Volver al Inicio
+        </a>
+    </div>
+    
+    {{#if users.length}}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-user"></i> Nombre</th>
+                        <th><i class="fas fa-user"></i> Apellido</th>
+                        <th><i class="fas fa-envelope"></i> Email</th>
+                        <th><i class="fas fa-birthday-cake"></i> Edad</th>
+                        <th><i class="fas fa-cogs"></i> Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td><strong>{{name}}</strong></td>
+                        <td>{{lastName}}</td>
+                        <td>
+                            <a href="mailto:{{email}}" style="color: #667eea; text-decoration: none;">
+                                <i class="fas fa-envelope"></i> {{email}}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="badge" style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
+                                {{age}} años
+                            </span>
+                        </td>
+                        <td>
+                            <a href="/user/update/{{_id}}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <form action="/user/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;" 
+                                        onclick="return confirm('¿Estás seguro de que quieres eliminar a {{name}} {{lastName}}?')">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+        <div class="text-center" style="padding: 3rem 2rem; color: #6c757d;">
+            <i class="fas fa-users" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <h3>No hay usuarios registrados</h3>
+            <p>Comienza creando tu primer usuario</p>
+            <a href="/user/create" class="btn btn-success">
+                <i class="fas fa-user-plus"></i> Crear Primer Usuario
+            </a>
+        </div>
+    {{/if}}
+</div>

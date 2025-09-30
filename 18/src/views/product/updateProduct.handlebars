@@ -1,38 +1,88 @@
-<form action="/product/update/{{product._id}}?_method=patch" method="post" >
-    <label for="name">Nombre</label>
-    <input type="text" id="name" name="name" value="{{product.name}}">
-    <br>
-    <label for="price">Precio</label>
-    <input type="text" id="price" name="price" value="{{product.price}}">
-    <br>
-    <label for="profitRate">Rango de ganancia</label>
-    <input type="text" id="profitRate" name="profitRate" value="{{product.profitRate}}">
-    <br>
-    <label for="description">Descripcion</label>
-    <textarea id="description" name="description" value="{{product.description}}"></textarea>
-    <br>
-    {{!-- hacer llamado al endpoint de status para traer los estados posibles --}}
-    <label for="status">Estado</label>
-    <select name="status" id="status">
-        <option value="" disabled selected > Seleccionar </option>
-        <option value="AVAILABLE" {{#eq product.status "AVAILABLE" }} selected {{/eq}}>Disponible</option>
-        <option value="NOT AVAILABLE" {{#eq product.status "NOT AVAILABLE" }} selected {{/eq}}>No disponible</option>
-        <option value="DISCONTINUED" {{#eq product.status "DISCONTINUED" }} selected {{/eq}}>Descontinuado</option>
-    </select>
-    <br>
-    <label for="category">Categoria</label>
-    <select name="category" id="category">
-        <option value="" disabled selected > Seleccionar </option>
-        <option value="68d5bffd6ab0869113fd8a81" {{#eq product.category._id "68d5bffd6ab0869113fd8a81" }} selected  {{/eq}} > </option>
-    </select>
-    <br>
-    <label for="highlighted">Destacado</label>
-    <select name="highlighted" id="highlighted">
-        <option value="" disabled selected > Seleccionar </option>
-        <option value="true" {{#eq product.highlighted true }} selected {{/eq}}> Destacado </option>
-        <option value="false" {{#eq product.highlighted false }} selected {{/eq}}> No Destacado </option>
-    </select>
-    <br>
-    <button type="submit">Enviar</button>
-    <button type="reset">Resetear</button>
-</form>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-edit"></i> Editar Producto
+    </div>
+    
+    <form action="/product/update/{{product._id}}?_method=patch" method="POST" style="max-width: 800px; margin: 0 auto;">
+        
+        <div class="form-group">
+            <label for="name">
+                <i class="fas fa-box"></i> Nombre del Producto:
+            </label>
+            <input type="text" id="name" name="name" value="{{product.name}}" required 
+                   placeholder="Ingresa el nombre del producto">
+        </div>
+        
+        <div class="form-group">
+            <label for="price">
+                <i class="fas fa-dollar-sign"></i> Precio:
+            </label>
+            <input type="number" id="price" name="price" value="{{product.price}}" min="1" step="0.01" required 
+                   placeholder="Ingresa el precio">
+        </div>
+        
+        <div class="form-group">
+            <label for="profitRate">
+                <i class="fas fa-chart-line"></i> Margen de Ganancia:
+            </label>
+            <input type="number" id="profitRate" name="profitRate" value="{{product.profitRate}}" min="1" step="0.01" 
+                   placeholder="Ingresa el margen de ganancia">
+        </div>
+        
+        <div class="form-group">
+            <label for="description">
+                <i class="fas fa-align-left"></i> Descripción:
+            </label>
+            <textarea id="description" name="description" rows="3" 
+                      placeholder="Ingresa la descripción del producto">{{product.description}}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="status">
+                <i class="fas fa-toggle-on"></i> Estado:
+            </label>
+            <select id="status" name="status" required>
+                <option value="AVAILABLE" {{#if (eq product.status "AVAILABLE")}}selected{{/if}}>Disponible</option>
+                <option value="NOT AVAILABLE" {{#if (eq product.status "NOT AVAILABLE")}}selected{{/if}}>No Disponible</option>
+                <option value="DISCONTINUED" {{#if (eq product.status "DISCONTINUED")}}selected{{/if}}>Descontinuado</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">
+                <i class="fas fa-tag"></i> Categoría:
+            </label>
+            <select id="category" name="category">
+                <option value="" {{#unless product.category._id}}selected{{/unless}}>Sin categoría</option>
+                {{#each categories}}
+                <option value="{{_id}}" {{#if (eq (toString _id) (toString ../product.category._id))}}selected{{/if}}>{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="stock">
+                <i class="fas fa-warehouse"></i> Stock:
+            </label>
+            <input type="number" id="stock" name="stock" value="{{product.stock}}" min="0" 
+                   placeholder="Ingresa la cantidad en stock">
+        </div>
+        
+        <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: #495057;">
+                <input type="checkbox" name="highlighted" value="true" {{#if product.highlighted}}checked{{/if}} 
+                       style="width: auto; margin-right: 0.5rem;">
+                <i class="fas fa-star"></i> Producto Destacado
+            </label>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+            <button type="submit" class="btn btn-success" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-save"></i> Actualizar Producto
+            </button>
+            <a href="/product/getAll" class="btn btn-secondary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-arrow-left"></i> Cancelar
+            </a>
+        </div>
+    </form>
+</div>
