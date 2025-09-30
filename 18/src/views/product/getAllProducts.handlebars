@@ -1,131 +1,72 @@
 <div class="card">
     <div class="card-header">
-        <i class="fas fa-box"></i> Lista de Productos
-        <span class="badge" style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-left: 1rem;">
-            {{products.length}} productos
-        </span>
+        <i class="fas fa-boxes"></i> Lista de Productos
     </div>
     
-    <div class="mb-3">
+    <div style="margin-bottom: 1rem;">
         <a href="/product/create" class="btn btn-success">
-            <i class="fas fa-plus"></i> Nuevo Producto
-        </a>
-        <a href="/" class="btn btn-secondary">
-            <i class="fas fa-home"></i> Volver al Inicio
+            <i class="fas fa-plus"></i> Crear Producto
         </a>
     </div>
     
     {{#if products.length}}
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-box"></i> Nombre</th>
-                        <th><i class="fas fa-dollar-sign"></i> Precio</th>
-                        <th><i class="fas fa-toggle-on"></i> Estado</th>
-                        <th><i class="fas fa-tag"></i> Categoría</th>
-                        <th><i class="fas fa-warehouse"></i> Stock</th>
-                        <th><i class="fas fa-star"></i> Destacado</th>
-                        <th><i class="fas fa-cogs"></i> Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each products}}
-                    <tr>
-                        <td><strong style="color: #667eea;">{{name}}</strong></td>
-                        <td>
-                            <span class="badge" style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 10px; font-weight: bold;">
-                                ${{price}}
-                            </span>
-                        </td>
-                        <td>
-                            {{#if status}}
-                                {{#if (eq status 'AVAILABLE')}}
-                                    <span class="badge" style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-check"></i> Disponible
-                                    </span>
-                                {{else if (eq status 'NOT AVAILABLE')}}
-                                    <span class="badge" style="background: #ffc107; color: #212529; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-exclamation-triangle"></i> No Disponible
-                                    </span>
-                                {{else if (eq status 'DISCONTINUED')}}
-                                    <span class="badge" style="background: #dc3545; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-ban"></i> Descontinuado
-                                    </span>
-                                {{else}}
-                                    <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-question"></i> {{status}}
-                                    </span>
-                                {{/if}}
-                            {{else}}
-                                <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    Sin estado
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>${{price}}</td>
+                    <td>{{#if category}}{{category.name}}{{else}}Sin categoría{{/if}}</td>
+                    <td>
+                        {{#if status}}
+                            {{#if (eq status 'AVAILABLE')}}
+                                <span class="badge" style="background: #28a745; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
+                                    <i class="fas fa-check"></i> Disponible
                                 </span>
-                            {{/if}}
-                        </td>
-                        <td>
-                            {{#if category}}
-                                <span class="badge" style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-tag"></i> {{category.name}}
-                                </span>
-                            {{else}}
-                                <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    Sin categoría
-                                </span>
-                            {{/if}}
-                        </td>
-                        <td>
-                            {{#if stock}}
-                                {{#if (gt stock 0)}}
-                                    <span class="badge" style="background: #17a2b8; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-warehouse"></i> {{stock}}
-                                    </span>
-                                {{else}}
-                                    <span class="badge" style="background: #dc3545; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                        <i class="fas fa-warehouse"></i> {{stock}}
-                                    </span>
-                                {{/if}}
-                            {{else}}
-                                <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    Sin stock
-                                </span>
-                            {{/if}}
-                        </td>
-                        <td>
-                            {{#if highlighted}}
+                            {{else if (eq status 'NOT AVAILABLE')}}
                                 <span class="badge" style="background: #ffc107; color: #212529; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    <i class="fas fa-star"></i> Destacado
+                                    <i class="fas fa-exclamation-triangle"></i> No Disponible
+                                </span>
+                            {{else if (eq status 'DISCONTINUED')}}
+                                <span class="badge" style="background: #dc3545; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
+                                    <i class="fas fa-ban"></i> Descontinuado
                                 </span>
                             {{else}}
                                 <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                    Normal
+                                    <i class="fas fa-question"></i> {{status}}
                                 </span>
                             {{/if}}
-                        </td>
-                        <td>
-                            <a href="/product/update/{{_id}}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                <i class="fas fa-edit"></i> Editar
-                            </a>
-                            <form action="/product/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
-                                <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;" 
-                                        onclick="return confirm('¿Estás seguro de que quieres eliminar el producto {{name}}?')">
-                                    <i class="fas fa-trash"></i> Eliminar
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
+                        {{else}}
+                            <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
+                                Sin estado
+                            </span>
+                        {{/if}}
+                    </td>
+                    <td>
+                        <a href="/product/update/{{_id}}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <form action="/product/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
+                                    onclick="return confirm('¿Estás seguro de que quieres eliminar el producto {{name}}?')">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     {{else}}
-        <div class="text-center" style="padding: 3rem 2rem; color: #6c757d;">
-            <i class="fas fa-box" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-            <h3>No hay productos registrados</h3>
-            <p>Comienza creando tu primer producto</p>
-            <a href="/product/create" class="btn btn-success">
-                <i class="fas fa-plus"></i> Crear Primer Producto
-            </a>
-        </div>
+        <p>No hay productos registrados.</p>
     {{/if}}
 </div>

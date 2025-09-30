@@ -2,52 +2,32 @@
     <div class="card-header">
         <i class="fas fa-user-edit"></i> Editar Usuario
     </div>
-    
-    <form action="/user/update/{{user._id}}?_method=patch" method="POST" style="max-width: 600px; margin: 0 auto;">
-        
+    <form action="/user/update/{{user._id}}?_method=patch" method="post">
         <div class="form-group">
-            <label for="name">
-                <i class="fas fa-user"></i> Nombre:
-            </label>
-            <input type="text" id="name" name="name" value="{{user.name}}" required 
-                   placeholder="Ingresa el nombre del usuario"
-                   style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{user.name}}" required>
         </div>
         
         <div class="form-group">
-            <label for="lastName">
-                <i class="fas fa-user"></i> Apellido:
-            </label>
-            <input type="text" id="lastName" name="lastName" value="{{user.lastName}}" required 
-                   placeholder="Ingresa el apellido del usuario"
-                   style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" name="lastName" value="{{user.lastName}}" required>
         </div>
         
         <div class="form-group">
-            <label for="email">
-                <i class="fas fa-envelope"></i> Email:
-            </label>
-            <input type="email" id="email" name="email" value="{{user.email}}" required 
-                   placeholder="usuario@ejemplo.com"
-                   style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{user.email}}" required>
         </div>
         
         <div class="form-group">
-            <label for="age">
-                <i class="fas fa-birthday-cake"></i> Edad:
-            </label>
-            <input type="number" id="age" name="age" value="{{user.age}}" min="16" max="110" required 
-                   placeholder="Ingresa la edad"
-                   style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+            <label for="age">Edad:</label>
+            <input type="number" id="age" name="age" value="{{user.age}}" required>
         </div>
         
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-            <button type="submit" class="btn btn-success" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                <i class="fas fa-save"></i> Actualizar Usuario
-            </button>
-            <a href="/user/getAll" class="btn btn-secondary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                <i class="fas fa-arrow-left"></i> Cancelar
-            </a>
-        </div>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Actualizar Usuario
+        </button>
+        <a href="/user/getAll" class="btn btn-secondary">
+            <i class="fas fa-list"></i> Ver Usuarios
+        </a>
     </form>
 </div>

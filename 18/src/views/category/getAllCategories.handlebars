@@ -1,62 +1,39 @@
 <div class="card">
     <div class="card-header">
         <i class="fas fa-tags"></i> Lista de Categorías
-        <span class="badge" style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 10px; font-size: 0.8rem; margin-left: 1rem;">
-            {{categories.length}} categorías
-        </span>
     </div>
     
-    <div class="mb-3">
+    <div style="margin-bottom: 1rem;">
         <a href="/category/create" class="btn btn-success">
-            <i class="fas fa-plus"></i> Nueva Categoría
-        </a>
-        <a href="/" class="btn btn-secondary">
-            <i class="fas fa-home"></i> Volver al Inicio
+            <i class="fas fa-plus"></i> Crear Categoría
         </a>
     </div>
     
     {{#if categories.length}}
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-tag"></i> Nombre</th>
-                        <th><i class="fas fa-calendar"></i> Fecha de Creación</th>
-                        <th><i class="fas fa-cogs"></i> Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each categories}}
-                    <tr>
-                        <td>
-                            <strong style="color: #667eea;">{{name}}</strong>
-                        </td>
-                        <td>
-                            <span class="badge" style="background: #6c757d; color: white; padding: 0.25rem 0.5rem; border-radius: 10px;">
-                                {{formatDate createdAt}}
-                            </span>
-                        </td>
-                        <td>
-                            <form action="/category/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
-                                <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;" 
-                                        onclick="return confirm('¿Estás seguro de que quieres eliminar la categoría {{name}}?')">
-                                    <i class="fas fa-trash"></i> Eliminar
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>
+                        <form action="/category/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
+                                    onclick="return confirm('¿Estás seguro de que quieres eliminar la categoría {{name}}?')">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     {{else}}
-        <div class="text-center" style="padding: 3rem 2rem; color: #6c757d;">
-            <i class="fas fa-tags" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-            <h3>No hay categorías registradas</h3>
-            <p>Comienza creando tu primera categoría</p>
-            <a href="/category/create" class="btn btn-success">
-                <i class="fas fa-plus"></i> Crear Primera Categoría
-            </a>
-        </div>
+        <p>No hay categorías registradas.</p>
     {{/if}}
 </div>

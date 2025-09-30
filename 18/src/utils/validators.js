@@ -1,7 +1,10 @@
-export const isGoodPassword = value => {
-    // Entre 6 y 12 caracteres, minimo un digito numerico, una letra minuscula y una letra mayuscula
-    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}/;
-    // Retorna true si el regex es verdadero
-    // Retorna false si el regex es falso
-    return regex.test(value)
+// ===== VALIDADORES =====
+// Funciones para validar datos de entrada
+
+// Función para validar contraseñas
+export const isGoodPassword = (password) => {
+    // Expresión regular para validar contraseñas
+    // Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/
+    return passwordRegex.test(password)
 }

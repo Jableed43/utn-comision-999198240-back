@@ -47,7 +47,7 @@ export const getAllUsersView = async (req, res) => {
     }
 }
 
-// Vista de editar usuario
+// Vista para mostrar el formulario de edición de usuario
 export const updateUserView = async (req, res) => {
     try {
         const userId = req.params.id
@@ -59,6 +59,7 @@ export const updateUserView = async (req, res) => {
             return res.redirect("/user/getAll")
         }
         
+        // Renderizamos la vista de edición
         res.render("user/updateUser", { 
             title: "Editar Usuario",
             user: user,
@@ -70,7 +71,7 @@ export const updateUserView = async (req, res) => {
     }
 }
 
-// ===== ACCIONES =====
+// ===== ACCIONES (Lo que hace la aplicación) =====
 
 // Función para crear un nuevo usuario
 export const createUser = async (req, res) => {

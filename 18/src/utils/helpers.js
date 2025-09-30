@@ -53,13 +53,26 @@ export const registerHelpers = (Handlebars) => {
     // Helper para formatear precios
     Handlebars.registerHelper('formatPrice', function (price) {
         if (!price) return '$0.00';
-        return `$${parseFloat(price).toFixed(2)}`;
+        return new Intl.NumberFormat('es-ES', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(price);
     });
 
     // Helper para capitalizar texto
     Handlebars.registerHelper('capitalize', function (text) {
         if (!text) return '';
-        return text.charAt(0).toUpperCase() + text.slice(1);
+        return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    });
+
+    // Helper para verificar si un valor existe
+    Handlebars.registerHelper('exists', function (value) {
+        return value !== null && value !== undefined && value !== '';
+    });
+
+    // Helper para comparar si un valor es menor que otro
+    Handlebars.registerHelper('lt', function (a, b) {
+        return a < b;
     });
 
     // Helper para truncar texto
@@ -69,25 +82,38 @@ export const registerHelpers = (Handlebars) => {
         return text.substring(0, length) + '...';
     });
 
-    // Helper para generar IDs únicos
+    // Helper para generar ID único
     Handlebars.registerHelper('uniqueId', function () {
-        return 'id_' + Math.random().toString(36).substr(2, 9);
+        return Math.random().toString(36).substr(2, 9);
     });
 
-    // Helper para operaciones matemáticas
+    // Helper para verificar si es el primer elemento
+    Handlebars.registerHelper('isFirst', function (index) {
+        return index === 0;
+    });
+
+    // Helper para verificar si es el último elemento
+    Handlebars.registerHelper('isLast', function (index, array) {
+        return index === array.length - 1;
+    });
+
+    // Helper para sumar números
     Handlebars.registerHelper('add', function (a, b) {
         return a + b;
     });
 
+    // Helper para restar números
     Handlebars.registerHelper('subtract', function (a, b) {
         return a - b;
     });
 
+    // Helper para multiplicar números
     Handlebars.registerHelper('multiply', function (a, b) {
         return a * b;
     });
 
+    // Helper para dividir números
     Handlebars.registerHelper('divide', function (a, b) {
-        return a / b;
+        return b !== 0 ? a / b : 0;
     });
-};
+}

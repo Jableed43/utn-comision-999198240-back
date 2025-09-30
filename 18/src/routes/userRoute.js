@@ -2,24 +2,24 @@ import express from 'express'
 import { 
     createUserView, 
     createUser, 
-    loginView, 
-    validate, 
     getAllUsersView, 
     updateUserView, 
     updateUser, 
     deleteUser, 
+    loginView, 
+    validate, 
     logout 
 } from '../controllers/userController.js'
 
 export const userRoute = express.Router()
 
-// Vistas
+// ===== RUTAS DE VISTAS =====
 userRoute.get("/create", createUserView)
 userRoute.get("/login", loginView)
 userRoute.get("/getAll", getAllUsersView)
 userRoute.get("/update/:id", updateUserView)
 
-// Acciones
+// ===== RUTAS DE ACCIONES =====
 userRoute.post("/create", createUser)
 userRoute.post("/login", validate)
 userRoute.patch("/update/:id", updateUser)

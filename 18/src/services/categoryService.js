@@ -8,6 +8,12 @@ export const createCategoryService = async (name) => {
 
 export const getCategoriesService = async () => {
     const categories = await Category.find()
+
+    if( categories.length === 0 ){
+        const error = new Error("There are no categories")
+        error.statusCode = 204;
+        throw error;
+    }
     return categories;
 }
 

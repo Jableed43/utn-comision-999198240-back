@@ -1,57 +1,20 @@
 <div class="card">
     <div class="card-header">
-        <i class="fas fa-plus"></i> Crear Nuevo Producto
+        <i class="fas fa-box"></i> Crear Producto
     </div>
-    
-    <form action="/product/create" method="POST" style="max-width: 800px; margin: 0 auto;">
-        
+    <form action="/product/create" method="POST">
         <div class="form-group">
-            <label for="name">
-                <i class="fas fa-box"></i> Nombre del Producto:
-            </label>
-            <input type="text" id="name" name="name" required 
-                   placeholder="Ingresa el nombre del producto">
+            <label for="name">Nombre del Producto:</label>
+            <input type="text" id="name" name="name" required>
         </div>
         
         <div class="form-group">
-            <label for="price">
-                <i class="fas fa-dollar-sign"></i> Precio:
-            </label>
-            <input type="number" id="price" name="price" min="1" step="0.01" required 
-                   placeholder="Ingresa el precio">
+            <label for="price">Precio:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
         </div>
         
         <div class="form-group">
-            <label for="profitRate">
-                <i class="fas fa-chart-line"></i> Margen de Ganancia:
-            </label>
-            <input type="number" id="profitRate" name="profitRate" min="1" step="0.01" value="1.30" 
-                   placeholder="Ingresa el margen de ganancia">
-        </div>
-        
-        <div class="form-group">
-            <label for="description">
-                <i class="fas fa-align-left"></i> Descripción:
-            </label>
-            <textarea id="description" name="description" rows="3" 
-                      placeholder="Ingresa la descripción del producto"></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="status">
-                <i class="fas fa-toggle-on"></i> Estado:
-            </label>
-            <select id="status" name="status" required>
-                <option value="AVAILABLE">Disponible</option>
-                <option value="NOT AVAILABLE">No Disponible</option>
-                <option value="DISCONTINUED">Descontinuado</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="category">
-                <i class="fas fa-tag"></i> Categoría:
-            </label>
+            <label for="category">Categoría:</label>
             <select id="category" name="category">
                 <option value="">Sin categoría</option>
                 {{#each categories}}
@@ -61,28 +24,19 @@
         </div>
         
         <div class="form-group">
-            <label for="stock">
-                <i class="fas fa-warehouse"></i> Stock:
-            </label>
-            <input type="number" id="stock" name="stock" min="0" value="0" 
-                   placeholder="Ingresa la cantidad en stock">
+            <label for="status">Estado:</label>
+            <select id="status" name="status" required>
+                <option value="AVAILABLE">Disponible</option>
+                <option value="NOT AVAILABLE">No Disponible</option>
+                <option value="DISCONTINUED">Descontinuado</option>
+            </select>
         </div>
         
-        <div class="form-group">
-            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: #495057;">
-                <input type="checkbox" name="highlighted" value="true" 
-                       style="width: auto; margin-right: 0.5rem;">
-                <i class="fas fa-star"></i> Producto Destacado
-            </label>
-        </div>
-        
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-            <button type="submit" class="btn btn-success" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                <i class="fas fa-plus"></i> Crear Producto
-            </button>
-            <a href="/product/getAll" class="btn btn-secondary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                <i class="fas fa-arrow-left"></i> Cancelar
-            </a>
-        </div>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Crear Producto
+        </button>
+        <a href="/product/getAll" class="btn btn-secondary">
+            <i class="fas fa-list"></i> Ver Productos
+        </a>
     </form>
 </div>

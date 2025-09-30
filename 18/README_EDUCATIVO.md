@@ -300,7 +300,7 @@ Usuario ve resultado ← Vista ← Controlador ← Servicio ← Modelo ← Base 
     --primary: #007bff;      /* Azul principal */
     --success: #28a745;      /* Verde para éxito */
     --danger: #dc3545;       /* Rojo para peligro */
-    --warning: #ffc107;       /* Amarillo para advertencia */
+    --warning: #ffc107;      /* Amarillo para advertencia */
     --light: #f8f9fa;        /* Gris claro */
     --dark: #343a40;         /* Gris oscuro */
 }

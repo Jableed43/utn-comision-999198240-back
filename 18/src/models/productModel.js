@@ -48,11 +48,7 @@ const productSchema = new mongoose.Schema({
     },
     // Esta seria el equivalente a FK en bases de datos noSQL
     // Ref es a que modelo se refiere, y cual modelo/collection es dueño de ese ObjectId
-    category: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "category",
-        required: false
-    },
+    category: {type: mongoose.Schema.Types.ObjectId, ref: "category" },
 
     stock: {
         type: Number,
@@ -98,4 +94,4 @@ const productSchema = new mongoose.Schema({
     productSchema.set("toJSON", {virtuals: true})
     productSchema.set("toObject", {virtuals: true})
 
-export default mongoose.model("product", productSchema, "products")
+export default mongoose.model("product", productSchema) 

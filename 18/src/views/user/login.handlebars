@@ -1,64 +1,23 @@
-<div class="card" style="max-width: 500px; margin: 2rem auto;">
+<div class="card">
     <div class="card-header">
         <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
     </div>
-    
-    <div style="padding: 2rem;">
-        <form action="/user/login" method="POST">
-            <div class="form-group">
-                <label for="email">
-                    <i class="fas fa-envelope"></i> Email:
-                </label>
-                <input type="email" id="email" name="email" required 
-                       placeholder="usuario@ejemplo.com"
-                       style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; width: 100%;">
-            </div>
-            
-            <div class="form-group">
-                <label for="password">
-                    <i class="fas fa-lock"></i> Contraseña:
-                </label>
-                <input type="password" id="password" name="password" required 
-                       placeholder="Ingresa tu contraseña"
-                       style="padding: 0.75rem 1rem; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; width: 100%;">
-            </div>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <button type="submit" class="btn btn-success" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                </button>
-                <a href="/user/create" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">
-                    <i class="fas fa-user-plus"></i> Registrarse
-                </a>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e9ecef;">
-                <p style="color: #6c757d; margin-bottom: 1rem;">
-                    <i class="fas fa-info-circle"></i> ¿No tienes una cuenta?
-                </p>
-                <a href="/" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">
-                    <i class="fas fa-home"></i> Volver al Inicio
-                </a>
-            </div>
-        </form>
-    </div>
+    <form action="/user/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+        <a href="/user/create" class="btn btn-secondary">
+            <i class="fas fa-user-plus"></i> Registrarse
+        </a>
+    </form>
 </div>
-
-<style>
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        color: #495057;
-    }
-    
-    .form-group input:focus {
-        outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-</style>

@@ -76,4 +76,4 @@ const userSchema = new mongoose.Schema({
 
     // Exportamos el modelo
     // "user" es la coleccion con la que elijo trabajar
-export default mongoose.model("user", userSchema, "users")
+export default mongoose.model("user", userSchema)

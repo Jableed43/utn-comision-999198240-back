@@ -68,7 +68,7 @@ export const validateUserService = async (email, password) => {
    console.log(userFound)
 
    if(!userFound){
-        const error = new Error("Usuario o contraseña incorrectos")
+        const error = new Error("User or password are incorrect")
        error.statusCode = 400;
        throw error
    }
@@ -76,7 +76,7 @@ export const validateUserService = async (email, password) => {
    // Comparamos la password que llega contra la guardada en la db
    // Toma la contraseña del cliente la encripta y la compara contra la guardada (encriptada)
    if(!bcrypt.compareSync(password, userFound.password)){
-        const error = new Error("Usuario o contraseña incorrectos")
+        const error = new Error("User or password are incorrect")
        error.statusCode = 400;
        throw error
    }
@@ -92,12 +92,6 @@ export const validateUserService = async (email, password) => {
    // Firma tiene: 1. payload, 2. "secret", 3. duracion
    const token = jwt.sign(payload, SECRET, { expiresIn: "1h" })
 
-   return { 
-       message: "Logged in", 
-       token,
-       userId: userFound._id,
-       userEmail: userFound.email,
-       userName: userFound.name
-   }
+   return { message: "Logged in", token }
 
 }
