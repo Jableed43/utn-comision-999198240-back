@@ -11,6 +11,7 @@ import path, { dirname } from 'path'
 import { homeView } from './src/controllers/generalController.js'
 import { fileURLToPath } from 'url'
 import methodOverride from "method-override"
+import { registerHelpers } from './src/helpers/helpers.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -20,9 +21,18 @@ const app = express()
 app.use(methodOverride("_method"))
 
 // Configuramos handlebars como nuestro template engine
-app.engine("handlebars", engine())
+app.engine("handlebars", engine({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
+}))
 app.set("view engine", "handlebars")
 app.set("views", "./src/views")
+
+// Registrar los helpers
+import Handlebars from 'handlebars'
+registerHelpers(Handlebars)
 
 // Configuramos la ruta estatica de imagenes
 // app.use(express.static(path.join(__dirname, 'public')))

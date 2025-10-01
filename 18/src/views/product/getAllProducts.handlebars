@@ -1,8 +1,11 @@
+<h2>{{title}}</h2>
+<a href="/product/create">Crear producto</a>
 <div
   style="display: flex;
     flex-wrap: wrap;
     gap: 15px;"
 >
+{{!-- La forma de iterar es con #each --}}
   {{#each products}}
     <div
       style="border: solid black;
@@ -14,7 +17,17 @@
       <p>{{name}} </p>
       <p>{{price}} </p>
       <p>{{description}} </p>
-      <p>{{status}} </p>
+      <p> 
+        {{#if (eq status "NOT AVAILABLE")}} 
+            No disponible
+          {{else if (eq status "AVAILABLE")}}
+            Disponible
+          {{else if (eq status "DISCONTINUED") }}
+            Descontinuado
+            {{else}}
+                {{status}}
+          {{/if}} 
+          </p>
       <p>{{category.name}} </p>
       <p>{{stock}} </p>
       {{#if highlighted}}
@@ -22,6 +35,10 @@
       {{else}}
         <p> Producto no destacado </p>
       {{/if}}
+      <a href="/product/update/{{_id}}">Editar</a>
+      <form action="/product/delete/{{_id}}?_method=delete" method="POST" >
+      <button type="submit" onclick="return confirm('¿Estas seguro de que queres eliminar el producto {{name}}?')" > Borrar producto </button>
+      </form>
     </div>
   {{/each}}
 </div>
