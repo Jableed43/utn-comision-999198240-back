@@ -51,15 +51,9 @@ const insertUsers = async () => {
         // Limpiar usuarios existentes
         await User.deleteMany({})
         
-        // Encriptar contraseñas y crear usuarios
-        const users = []
-        for (const userData of usersData) {
-            const hashedPassword = await bcrypt.hash(userData.password, 10)
-            users.push({
-                ...userData,
-                password: hashedPassword
-            })
-        }
+        // Los usuarios se crean con contraseñas en texto plano
+        // El modelo se encarga de encriptarlas automáticamente
+        const users = usersData
         
         // Insertar usuarios
         const createdUsers = await User.insertMany(users)
