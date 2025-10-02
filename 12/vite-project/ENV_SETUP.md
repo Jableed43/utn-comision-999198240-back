@@ -56,3 +56,4 @@ VITE_API_BASE_URL=https://mi-api.com/api
 - Las variables de entorno en Vite deben empezar con `VITE_`
 - Después de cambiar el `.env`, reinicia el servidor de desarrollo
 - El archivo `.env` no debe subirse al repositorio (está en `.gitignore`)
+

@@ -34,3 +34,4 @@ export const API_CONFIG = {
 export const buildApiUrl = (endpoint) => {
     return `${API_CONFIG.BASE_URL}${endpoint}`;
 };
+
