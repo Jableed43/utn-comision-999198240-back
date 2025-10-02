@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useCreateProduct from "../../hooks/products/useCreateProduct";
+import useCreateProduct from "../../../hooks/products/useCreateProduct.jsx";
 
-export const CreateProduct = () => {
+const CreateProduct = () => {
   // El estado de form tiene los mismos campos pero vacios
   const [form, setForm] = useState({
     name: "",
@@ -119,3 +119,5 @@ export const CreateProduct = () => {
     </>
   );
 };
+
+export default CreateProduct;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useFetchCategories() {
     const [error, setError] = useState();
@@ -9,7 +10,7 @@ function useFetchCategories() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch("http://localhost:3000/api/category/getCategories");
+            const response = await fetch(buildApiUrl(API_CONFIG.CATEGORY.GET_ALL));
 
             if (response.status === 204) {
                 // No hay categorías - devolver array vacío

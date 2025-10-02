@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 /**
  * Hook para autenticación de usuarios
@@ -8,7 +9,7 @@ function useLoginUser() {
     const [error, setError] = useState();
     const [done, setDone] = useState();
     const [loading, setLoading] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/login";
+    const initialUrl = buildApiUrl(API_CONFIG.USER.LOGIN);
 
     const loginUser = async (formData) => {
         setLoading(true);

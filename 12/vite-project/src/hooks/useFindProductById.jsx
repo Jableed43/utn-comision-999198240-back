@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../config/api.js";
 
 /**
  * Hook para buscar producto por ID
@@ -8,7 +9,7 @@ function useFindProductById() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const baseUrl = "http://localhost:3000/api/product/find-by-id";
+    const baseUrl = buildApiUrl(API_CONFIG.PRODUCT.FIND_BY_ID);
 
     const findProductById = async (id) => {
         setLoading(true);

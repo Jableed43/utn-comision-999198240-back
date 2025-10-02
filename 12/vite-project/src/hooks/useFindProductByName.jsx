@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../config/api.js";
 
 /**
  * Hook para buscar producto por nombre
@@ -8,7 +9,7 @@ function useFindProductByName() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const initialUrl = "http://localhost:3000/api/product/name";
+    const initialUrl = buildApiUrl(API_CONFIG.PRODUCT.FIND_BY_NAME);
 
     const findProductByName = async (name) => {
         setLoading(true);

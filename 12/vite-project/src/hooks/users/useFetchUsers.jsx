@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 /**
  * Hook para obtener la lista de usuarios
@@ -8,7 +9,7 @@ function useFetchUsers() {
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/getUsers";
+    const initialUrl = buildApiUrl(API_CONFIG.USER.GET_ALL);
 
     const fetchUsers = async () => {
         setLoading(true);

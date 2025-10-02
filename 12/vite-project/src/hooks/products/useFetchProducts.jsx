@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useFetchProducts() {
     const [ error, setError ] = useState()
     const [ done, setDone ] = useState()
     const [ loading, setLoading ] = useState(false)
-    const initialUrl = "http://localhost:3000/api/product/"
+    const initialUrl = buildApiUrl(API_CONFIG.PRODUCT.GET_ALL)
 
     const fetchProducts = async () => {
         setLoading(true)

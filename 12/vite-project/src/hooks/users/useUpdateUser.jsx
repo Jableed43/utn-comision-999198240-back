@@ -1,16 +1,16 @@
-import { useState } from "react"
+import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useUpdateUser() {
     const [ error, setError ] = useState()
     const [ done, setDone ] = useState()
     const [ loading, setLoading ] = useState(false)
-    const initialUrl = "http://localhost:3000/api/user/updateUser"
 
     const updateUser = async(id, formData) => {
         setLoading(true);
         setError(null)
         try {
-            const response = await fetch(`${initialUrl}/${id}`, {
+            const response = await fetch(`${buildApiUrl(API_CONFIG.USER.UPDATE)}/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)

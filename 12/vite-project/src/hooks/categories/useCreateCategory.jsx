@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useCreateCategory() {
     const [error, setError] = useState();
@@ -9,7 +10,7 @@ function useCreateCategory() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch("http://localhost:3000/api/category/create", {
+            const response = await fetch(buildApiUrl(API_CONFIG.CATEGORY.CREATE), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)

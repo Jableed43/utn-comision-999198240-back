@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useDeleteUser() {
     const [error, setError] = useState();
@@ -9,7 +10,7 @@ function useDeleteUser() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`http://localhost:3000/api/user/deleteUser/${id}`, {
+            const response = await fetch(`${buildApiUrl(API_CONFIG.USER.DELETE)}/${id}`, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }
             });

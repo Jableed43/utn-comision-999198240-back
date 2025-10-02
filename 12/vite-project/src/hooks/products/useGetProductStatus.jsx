@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 function useGetProductStatus() {
     const [error, setError] = useState();
@@ -8,7 +9,7 @@ function useGetProductStatus() {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch("http://localhost:3000/api/product/status");
+            const response = await fetch(buildApiUrl(API_CONFIG.PRODUCT.STATUS));
 
             if (response.ok) {
                 const statusList = await response.json();

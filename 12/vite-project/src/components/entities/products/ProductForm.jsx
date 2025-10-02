@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useFetchCategories } from '../../hooks/categories/index.jsx';
-import { useGetProductStatus } from '../../hooks/products/index.jsx';
+import { useFetchCategories } from '../../../hooks/categories/index.jsx';
+import { useGetProductStatus } from '../../../hooks/products/index.jsx';
 
 export const statusMap = {
         "AVAILABLE": "Disponible",

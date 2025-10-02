@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFetchUsers, useCreateUser, useUpdateUser, useDeleteUser } from '../../hooks/users/index.jsx';
+import { useFetchUsers, useCreateUser, useUpdateUser, useDeleteUser } from '../../../hooks/users/index.jsx';
 import UsersList from './UsersList.jsx';
 import UserForm from './UserForm.jsx';
 

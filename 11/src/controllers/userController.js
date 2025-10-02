@@ -27,7 +27,7 @@ export const getUsers = async (req, res) => {
         console.log({error})
         // 204 significa no content
         if(error.statusCode === 204){
-            return res.sendStatus(error.statusCode)
+            return res.status(204).json([])
         }
         return res.status(500).json({ message: "Internal server error", error: error.message })
     }

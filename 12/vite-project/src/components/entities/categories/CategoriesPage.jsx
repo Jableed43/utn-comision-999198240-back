@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFetchCategories, useCreateCategory, useDeleteCategory } from '../../hooks/categories/index.jsx';
+import { useFetchCategories, useCreateCategory, useDeleteCategory } from '../../../hooks/categories/index.jsx';
 import CategoriesList from './CategoriesList.jsx';
 import CategoryForm from './CategoryForm.jsx';
 

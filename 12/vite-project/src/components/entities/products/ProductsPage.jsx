@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFetchProducts, useCreateProduct, useUpdateProduct, useDeleteProduct } from '../../hooks/products/index.jsx';
+import { useFetchProducts, useCreateProduct, useUpdateProduct, useDeleteProduct } from '../../../hooks/products/index.jsx';
 import ProductsList from './ProductsList.jsx';
 import ProductForm from './ProductForm.jsx';
 

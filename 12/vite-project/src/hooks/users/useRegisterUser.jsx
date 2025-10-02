@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildApiUrl, API_CONFIG } from "../../config/api.js";
 
 /**
  * Hook para registro de usuarios
@@ -8,7 +9,7 @@ function useRegisterUser() {
     const [error, setError] = useState();
     const [done, setDone] = useState();
     const [loading, setLoading] = useState(false);
-    const initialUrl = "http://localhost:3000/api/user/create";
+    const initialUrl = buildApiUrl(API_CONFIG.USER.CREATE);
 
     const registerUser = async (formData) => {
         setLoading(true);
