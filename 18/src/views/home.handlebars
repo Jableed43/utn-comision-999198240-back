@@ -1,1 +1,35 @@
-<p> hola </p>
+<h1>Sistema CRUD Educativo</h1>
+<p>Un sistema completo de gestión desarrollado con Node.js, Express, MongoDB y Handlebars</p>
+
+<!-- Sección de Autenticación -->
+<div style="background: #e9ecef; padding: 20px; margin: 20px 0; border: 1px solid #ccc;">
+    {{#if session.userId}}
+        <h3>¡Hola {{session.userName}}!</h3>
+        <p>Sesión activa - {{session.userEmail}}</p>
+        <a href="/user/logout" class="btn btn-danger">Cerrar Sesión</a>
+        <a href="/user/getAll" class="btn">Ver Usuarios</a>
+    {{else}}
+        <h3>Accede a tu cuenta</h3>
+        <p>Inicia sesión para acceder a todas las funcionalidades</p>
+        <a href="/user/login" class="btn btn-success">Iniciar Sesión</a>
+        <a href="/user/create" class="btn">Registrarse</a>
+    {{/if}}
+</div>
+
+<!-- Funcionalidades del Sistema -->
+<h2>Funcionalidades Disponibles</h2>
+<ul>
+    <li><strong>Usuarios:</strong> <a href="/user/getAll">Ver lista</a> | <a href="/user/create">Crear nuevo</a></li>
+    <li><strong>Categorías:</strong> <a href="/category/getAll">Ver lista</a> | <a href="/category/create">Crear nueva</a></li>
+    <li><strong>Productos:</strong> <a href="/product/getAll">Ver lista</a> | <a href="/product/create">Crear nuevo</a></li>
+</ul>
+
+<!-- Información Técnica -->
+<h2>Información Técnica</h2>
+<ul>
+    <li><strong>Backend:</strong> Node.js + Express</li>
+    <li><strong>Base de datos:</strong> MongoDB</li>
+    <li><strong>Frontend:</strong> Handlebars</li>
+    <li><strong>Autenticación:</strong> Sessions</li>
+    <li><strong>Validaciones:</strong> Mongoose</li>
+</ul>

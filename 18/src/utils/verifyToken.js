@@ -1,14 +1,15 @@
-// Este util sirve para verificar los tokens
-import jwt from 'jsonwebtoken'
-import { SECRET } from '../../config.js'
+// ===== VERIFICACIÓN DE TOKENS =====
+// Funciones para verificar y decodificar tokens JWT
 
-// Creamos una funcion que verifica y valida que el token sea correcto y funcional sin estar vencido
-export function verifyToken(token) {
+import jwt from 'jsonwebtoken'
+
+// Función para verificar un token JWT
+export const verifyToken = (token) => {
     try {
-        // Decodificamos
-       const decoded = jwt.verify(token, SECRET)
-       return decoded
+        // Decodificamos el token usando la clave secreta
+        const decoded = jwt.verify(token, process.env.SECRET)
+        return decoded
     } catch (error) {
-        throw new Error("Invalid Token")
+        throw new Error("Token inválido")
     }
 }

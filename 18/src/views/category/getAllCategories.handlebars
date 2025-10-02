@@ -1,0 +1,30 @@
+<h2>Lista de Categorías</h2>
+<a href="/category/create" class="btn btn-success">Crear Categoría</a>
+
+{{#if categories.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categories}}
+            <tr>
+                <td>{{name}}</td>
+                <td>
+                    <form action="/category/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que quieres eliminar la categoría {{name}}?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay categorías registradas.</p>
+{{/if}}

@@ -1,44 +1,47 @@
-<h2>{{title}}</h2>
-<a href="/product/create">Crear producto</a>
-<div
-  style="display: flex;
-    flex-wrap: wrap;
-    gap: 15px;"
->
-{{!-- La forma de iterar es con #each --}}
-  {{#each products}}
-    <div
-      style="border: solid black;
-    text-align: center;
-    padding: 20px;
-    max-width: 22%;
-    box-sizing: border-box;"
-    >
-      <p>{{name}} </p>
-      <p>{{price}} </p>
-      <p>{{description}} </p>
-      <p> 
-        {{#if (eq status "NOT AVAILABLE")}} 
-            No disponible
-          {{else if (eq status "AVAILABLE")}}
-            Disponible
-          {{else if (eq status "DISCONTINUED") }}
-            Descontinuado
-            {{else}}
-                {{status}}
-          {{/if}} 
-          </p>
-      <p>{{category.name}} </p>
-      <p>{{stock}} </p>
-      {{#if highlighted}}
-        <p> Producto destacado </p>
-      {{else}}
-        <p> Producto no destacado </p>
-      {{/if}}
-      <a href="/product/update/{{_id}}">Editar</a>
-      <form action="/product/delete/{{_id}}?_method=delete" method="POST" >
-      <button type="submit" onclick="return confirm('¿Estas seguro de que queres eliminar el producto {{name}}?')" > Borrar producto </button>
-      </form>
-    </div>
-  {{/each}}
-</div>
+<h2>Lista de Productos</h2>
+<a href="/product/create" class="btn btn-success">Crear Producto</a>
+
+{{#if products.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{name}}</td>
+                <td>${{price}}</td>
+                <td>{{#if category}}{{category.name}}{{else}}Sin categoría{{/if}}</td>
+                <td>
+                    {{#if (eq status 'AVAILABLE')}}
+                        Disponible
+                    {{else if (eq status 'NOT AVAILABLE')}}
+                        No Disponible
+                    {{else if (eq status 'DISCONTINUED')}}
+                        Descontinuado
+                    {{else}}
+                        {{status}}
+                    {{/if}}
+                </td>
+                <td>
+                    <a href="/product/update/{{_id}}" class="btn">Editar</a>
+                    <form action="/product/delete/{{_id}}?_method=delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que quieres eliminar el producto {{name}}?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No hay productos registrados.</p>
+{{/if}}

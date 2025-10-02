@@ -11,7 +11,7 @@ import path, { dirname } from 'path'
 import { homeView } from './src/controllers/generalController.js'
 import { fileURLToPath } from 'url'
 import methodOverride from "method-override"
-import { registerHelpers } from './src/helpers/helpers.js'
+import { registerHelpers } from './src/utils/helpers.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -30,7 +30,7 @@ app.engine("handlebars", engine({
 app.set("view engine", "handlebars")
 app.set("views", "./src/views")
 
-// Registrar los helpers
+// Registrar helpers de Handlebars
 import Handlebars from 'handlebars'
 registerHelpers(Handlebars)
 

@@ -1,8 +1,17 @@
 import express from 'express'
-import { createCategory, deleteCategory, getCategories } from '../controllers/categoryController.js'
+import { 
+    createCategoryView, 
+    createCategory, 
+    getAllCategoriesView, 
+    deleteCategory 
+} from '../controllers/categoryController.js'
 
 export const categoryRoute = express.Router()
 
+// ===== RUTAS DE VISTAS =====
+categoryRoute.get("/create", createCategoryView)
+categoryRoute.get("/getAll", getAllCategoriesView)
+
+// ===== RUTAS DE ACCIONES =====
 categoryRoute.post("/create", createCategory)
-categoryRoute.get("/getCategories", getCategories)
 categoryRoute.delete("/delete/:id", deleteCategory)

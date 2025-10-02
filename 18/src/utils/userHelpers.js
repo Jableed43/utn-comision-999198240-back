@@ -1,12 +1,17 @@
-import User from "../models/userModel.js";
+// ===== HELPERS DE USUARIO =====
+// Funciones auxiliares para operaciones con usuarios
 
+import User from "../models/userModel.js"
+
+// Función para buscar un usuario por ID y verificar que existe
 export const findUserByIdAndCheck = async (userId) => {
-    const userExist = await User.findOne({ _id: userId })
-    
-        if(!userExist){
-            const error = new Error("User not found")
-            error.statusCode = 404
-            throw error
+    try {
+        const user = await User.findById(userId)
+        if (!user) {
+            throw new Error("Usuario no encontrado")
         }
-    return userExist
+        return user
+    } catch (error) {
+        throw new Error(`Error al buscar usuario: ${error.message}`)
+    }
 }
