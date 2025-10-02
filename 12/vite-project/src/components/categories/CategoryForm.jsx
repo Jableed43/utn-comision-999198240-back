@@ -75,3 +75,4 @@ const CategoryForm = ({ category, onSubmit, onCancel, loading }) => {
 };
 
 export default CategoryForm;
+

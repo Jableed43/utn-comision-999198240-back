@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useFetchCategories } from '../../hooks/categories/index.jsx';
 import { useGetProductStatus } from '../../hooks/products/index.jsx';
 
+export const statusMap = {
+        "AVAILABLE": "Disponible",
+        "NOT AVAILABLE": "No disponible",
+        "DISCONTINUED": "Descontinuado"
+    };
+
 const ProductForm = ({ product, onSubmit, onCancel, loading }) => {
     const [formData, setFormData] = useState({
         name: '',
@@ -157,7 +163,7 @@ const ProductForm = ({ product, onSubmit, onCancel, loading }) => {
                         <option value="">Selecciona un estado</option>
                         {statusList.map((status) => (
                             <option key={status} value={status}>
-                                {status}
+                                {statusMap[status]}
                             </option>
                         ))}
                     </select>

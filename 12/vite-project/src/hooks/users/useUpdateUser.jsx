@@ -35,4 +35,4 @@ function useUpdateUser() {
     return { updateUser, done, error, loading }
 }
 
-export default useUpdateUser
+export default useUpdateUser;

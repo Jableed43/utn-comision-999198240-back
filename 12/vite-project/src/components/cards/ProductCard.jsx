@@ -112,3 +112,4 @@ const ProductCard = ({ product, onEdit, onDelete }) => {
 };
 
 export default ProductCard;
+
