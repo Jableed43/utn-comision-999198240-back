@@ -75,10 +75,19 @@ const productSchema = new mongoose.Schema({
         if(this.stock < amount) {
             throw new Error("Not enough quantity")
         }
-        // stock = stock - amount
+        
+        // Usar updateOne para actualizar solo el stock sin validar otros campos
+        const result = await mongoose.model('product').updateOne(
+            { _id: this._id }, 
+            { $inc: { stock: -amount } }
+        )
+        
+        if (result.modifiedCount === 0) {
+            throw new Error("Failed to update stock")
+        }
+        
+        // Actualizar el valor local para mantener consistencia
         this.stock -= amount
-        // Se guarda en la db el nuevo valor
-        await this.save()
     }
 
     // Atributos/propiedades virtuales, sirven para:
