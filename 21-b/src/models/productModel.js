@@ -61,6 +61,17 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+
+    imageUrl: {
+        type: String,
+        default: null,
+        validate: {
+            validator: function(v){
+                return v === null || /^https:\/\/.*\.s3\..*\.amazonaws\.com\/.*$/.test(v);
+            },
+            message: "Invalid S3 image URL"
+        }
+    },
 })
 
     // Metodos de instancia para disminuir el stock
