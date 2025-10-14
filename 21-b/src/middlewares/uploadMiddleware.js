@@ -1,7 +1,7 @@
 import multer from 'multer'
 import sharp from 'sharp'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
-import { s3Client } from '../config/aws'
+import { s3Client } from '../config/aws.js'
 
 // Configurar multer para almacenar en memoria
 const storage = multer.memoryStorage()
