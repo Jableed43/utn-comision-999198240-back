@@ -1,4 +1,4 @@
-import {createUserService, deleteUserService, getUsersService, updateUserService} from '../services/userService'
+import {createUserService, deleteUserService, getUserByIdService, getUsersService, updateUserService} from '../services/userService.js'
 
 // Create
 export const createUser = async (req, res) => {
@@ -15,6 +15,26 @@ export const getUsers = async (req, res) => {
     try {
         const users = await getUsersService()
         res.status(200).json(users)
+        
+    } catch (error) {
+        if(error.statusCode === 204){
+            return res.status(error.statusCode).json([])
+        }
+        return res.status(500).json({message: "Internal server error", error: error.message})
+    }
+}
+
+// Get By Id
+export const getUserById = async (req, res) => {
+    try {
+        if(!req.params.id){
+            res.status(400).json({message: "You must provide an user id"})
+        }
+
+        const userId = req.params.id
+
+        const user = await getUserByIdService(userId)
+        res.status(200).json(user)
         
     } catch (error) {
         if(error.statusCode === 204){

@@ -1,4 +1,4 @@
-import User from '../models/userModel'
+import User from '../models/userModel.js'
 
 // Create
 export const createUserService = async (userData) => {
@@ -27,6 +27,20 @@ export const getUsersService = async () => {
         throw error
     }
     return users
+}
+
+// Get By ID
+export const getUserByIdService = async (userId) => {
+
+    const user = await User.findById({_id: userId})
+
+    // Validacion por si no hay usuarios
+    if(!user){
+        const error = new Error(`There is no user with ${userId} id`)
+        error.statusCode = 204 // No content
+        throw error
+    }
+    return user
 }
 
 // Delete

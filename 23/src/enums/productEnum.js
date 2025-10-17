@@ -1,0 +1,1 @@
+export const statusEnum = ["AVAILABLE", "NOT AVAILABLE", "DISCONTINUED"]
