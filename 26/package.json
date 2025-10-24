@@ -11,6 +11,10 @@
     "test:services": "jest src/__tests__/services",
     "test:utils": "jest src/__tests__/utils",
     "test:middlewares": "jest src/__tests__/middlewares",
+    "test:integration": "jest src/__tests__/integration",
+    "test:integration:products": "jest src/__tests__/integration/product.integration.test.js",
+    "test:integration:product-category": "jest src/__tests__/integration/product-category-flow.integration.test.js",
+    "test:integration:product-auth": "jest src/__tests__/integration/product-auth-flow.integration.test.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -22,10 +26,14 @@
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-basic-auth": "^1.2.1",
     "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.19.0",
-    "mongoose": "^8.18.0"
+    "mongoose": "^8.18.0",
+    "node-fetch": "^3.3.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",

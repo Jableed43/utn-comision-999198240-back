@@ -2,9 +2,12 @@ import { createProductService, deleteProductService, findProductByIdService, fin
 
 export const createProduct = async (req, res) => {
     try {
+        console.log('🔍 createProduct controller - req.body:', req.body);
         const savedProduct = await createProductService(req.body)
+        console.log('🔍 createProduct controller - savedProduct:', savedProduct);
         return res.status(200).json(savedProduct)
     } catch (error) {
+        console.log('🔍 createProduct controller - error:', error);
         return res.status(500).json({message: "internal server error", error: error.message})
     }
 }
@@ -50,10 +53,16 @@ export const findProductById = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     try {
+        console.log('🔍 updateProduct controller - req.body:', req.body);
+        console.log('🔍 updateProduct controller - productId:', req.params.id);
         const productId = req.params.id;
         const updatedProduct = await updateProductService(productId, req.body)
+        console.log('🔍 updateProduct controller - updatedProduct:', updatedProduct);
         res.status(201).json(updatedProduct)
     } catch (error) {
+        console.log('🔍 updateProduct controller - error:', error);
+        console.log('🔍 updateProduct controller - error.message:', error.message);
+        console.log('🔍 updateProduct controller - error.statusCode:', error.statusCode);
         if(error.statusCode === 400){
             return res.status(400).json({message: error.message})
         }
