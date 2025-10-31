@@ -1,0 +1,20 @@
+# Usar una imagen base de node.js
+FROM node:18-alpine
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos de dependencias
+COPY package*.json ./
+
+# Instalar dependencias
+RUN npm install
+
+# Copiar el codigo fuente
+COPY . .
+
+# Exponer puerto
+EXPOSE 3001
+
+# Comando para ejecutar la aplicacion
+CMD ["npm", "start"]

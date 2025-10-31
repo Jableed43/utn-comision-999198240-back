@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Aplicación Express
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    # OPCIÓN 1: Usar archivo .env (recomendado)
+    env_file:
+      - .env.docker
+    # OPCIÓN 2: Variables directamente (alternativa)
+    # environment:
+    #   - PORT=3001
+    #   - MONGODB_URI=mongodb://mongo:27017
+    #   - UTN_DB=ecommerce_db
+    #   - SECRET=mi-secreto-desarrollo-12345
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  # Base de datos MongoDB
+  mongo:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+
