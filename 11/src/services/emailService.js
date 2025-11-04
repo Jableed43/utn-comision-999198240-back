@@ -1,16 +1,14 @@
 import nodemailer from 'nodemailer';
-import { EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, EMAIL_FROM } from '../../config.js';
+import { EMAIL_USER, EMAIL_PASS, EMAIL_FROM } from '../../config.js';
 
 // Configuración del transporte de email
 // Usa credenciales SMTP para enviar emails
 const createTransporter = () => {
     return nodemailer.createTransport({
-        host: EMAIL_HOST,
-        port: EMAIL_PORT,
-        secure: EMAIL_PORT === 465, // true para puerto 465, false para otros puertos
+        service: 'gmail', // Esto es más simple y confiable para Gmail
         auth: {
-            user: EMAIL_USER,
-            pass: EMAIL_PASS
+            user: EMAIL_USER.trim(), // .trim() elimina espacios
+            pass: EMAIL_PASS.trim()
         }
     });
 };
