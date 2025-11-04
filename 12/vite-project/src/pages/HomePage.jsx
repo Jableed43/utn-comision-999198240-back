@@ -40,6 +40,16 @@ const HomePage = () => {
                             <p><strong>Funciones:</strong> CRUD completo de productos</p>
                         </div>
                     </Link>
+
+                    <Link to="/contact" className="user-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <div className="card-header">
+                            <h3>📧 Contacto</h3>
+                        </div>
+                        <div className="card-body">
+                            <p>Envíanos tu consulta o mensaje</p>
+                            <p><strong>Funciones:</strong> Formulario de contacto con múltiples opciones</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

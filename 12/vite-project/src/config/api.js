@@ -27,6 +27,11 @@ export const API_CONFIG = {
         GET_ALL: '/category/getCategories',
         CREATE: '/category/create',
         DELETE: '/category/delete'
+    },
+    
+    // Endpoints de email
+    EMAIL: {
+        CONTACT: '/email/contact'
     }
 };
 
