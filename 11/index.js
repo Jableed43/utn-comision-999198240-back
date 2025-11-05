@@ -7,6 +7,7 @@ import session from 'express-session'
 import { categoryRoute } from './src/routes/categoryRoute.js'
 import { productRoute } from './src/routes/productRoute.js'
 import cors from 'cors'
+import { emailRoute } from './src/routes/emailRoute.js'
 
 // Instancia del servidor de express
 const app = express()
@@ -44,6 +45,7 @@ app.use(
 app.use("/api/user", userRoute)
 app.use("/api/category", categoryRoute)
 app.use("/api/product", productRoute)
+app.use("/api/email", emailRoute)
 
 // Crear la escucha del servidor, para hacerlo correr
 app.listen(PORT, () => {

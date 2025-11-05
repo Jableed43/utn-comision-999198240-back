@@ -1,0 +1,11 @@
+<h2> Nueva consulta de contacto </h2>
+<div style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #333;" > 
+    <p> <strong>Nombre:</strong> ${name} </p>
+    <p> <strong>Email:</strong> ${email} </p>
+    { phone ? ` <p> <strong>Teléfono:</strong> ${phone} </p> ` : "" }
+    <p> <strong>Metodo de contacto preferido:</strong> ${contactMethod || "Email"} </p>
+    <p> <strong>Asunto:</strong> ${subject} </p>
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+    <p> <strong>Mensaje:</strong> </p>
+    <p style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; white-space: pre-wrap;"> ${message} </p>
+</div>
