@@ -35,6 +35,12 @@ const Navigation = () => {
                             Productos
                         </Link>
                     </li>
+
+                    <li>
+                        <Link to="/contact" className={isActive('/contact')}>
+                            Contacto
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>
